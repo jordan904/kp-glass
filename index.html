@@ -1629,6 +1629,13 @@ window.addEventListener('scroll', () => {
   #clara-status.show {
     display: block;
   }
+
+  /* Force-hide Vapi's default injected button */
+  .vapi-btn,
+  [id^="vapi"] button,
+  iframe[src*="vapi"] {
+    display: none !important;
+  }
 </style>
 
 <div id="clara-widget">
@@ -1666,6 +1673,7 @@ window.addEventListener('scroll', () => {
         assistant: ASSISTANT_ID,
         config: {
           // Hide Vapi's default button — we use our own
+          hideButton: true,
           button: { position: "hidden" }
         }
       });
