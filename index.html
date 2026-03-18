@@ -1691,95 +1691,116 @@ window.addEventListener('scroll', () => {
 
 <!-- Vapi SDK -->
 <script>
-  (function (d, t) {
-    var g = document.createElement(t), s = d.getElementsByTagName(t)[0];
+  (function () {
+    var PUBLIC_KEY   = "41c497f9-2361-4f30-944b-d0e0e246a702";
+    var ASSISTANT_ID = "5fca175c-10cd-424f-ae81-f25088b5e19a";
+
+    var btn    = document.getElementById("clara-btn");
+    var label  = document.getElementById("clara-label");
+    var status = document.getElementById("clara-status");
+    var iconM  = document.getElementById("icon-mic");
+    var iconS  = document.getElementById("icon-stop");
+    var active = false;
+    var vapi   = null;
+    var sdkReady = false;
+
+    // Show label on hover — works immediately
+    btn.addEventListener("mouseenter", function () {
+      label.classList.add("visible");
+    });
+    btn.addEventListener("mouseleave", function () {
+      label.classList.remove("visible");
+    });
+
+    // Toggle call on click — works immediately
+    btn.addEventListener("click", function () {
+      if (!sdkReady || !vapi) {
+        console.warn("Clara: Vapi SDK still loading, please wait...");
+        label.textContent = "Loading...";
+        label.classList.add("visible");
+        setTimeout(function () {
+          label.textContent = "Talk to Clara";
+          label.classList.remove("visible");
+        }, 2000);
+        return;
+      }
+      if (!active) {
+        vapi.start(ASSISTANT_ID, {
+          firstMessage: "Hi there! I'm Clara from KP Glass & Aluminum. How can I help you today?",
+          model: {
+            messages: [
+              {
+                role: "system",
+                content: "You are Clara, the friendly voice assistant for KP Glass & Aluminum Ltd. You are currently speaking with a visitor who is browsing the KP Glass website (not calling on the phone). Do NOT offer to text them or arrange a callback — they are on the website and can use the contact form or call directly. Help them with questions about services (glass glazing, aluminum fabrication, doors & windows, automatic door operators, service calls, and custom solutions), provide information about the company, or help them get in touch. KP Glass is located in Dartmouth, Nova Scotia and serves residential, commercial, and industrial clients across the province. Phone: 902-406-2595. Email: info@kp-glass.ca. Be warm, helpful, and concise. If the visitor wants to book a consultation or get a quote, encourage them to call or use the contact form on the website."
+              }
+            ]
+          }
+        });
+      } else {
+        vapi.stop();
+      }
+    });
+
+    // Load Vapi SDK asynchronously
+    var g = document.createElement("script");
     g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
     g.defer = true;
     g.async = true;
-    s.parentNode.insertBefore(g, s);
 
     g.onload = function () {
-      // ── REPLACE THESE TWO VALUES ──────────────────────────────
-      var PUBLIC_KEY    = "41c497f9-2361-4f30-944b-d0e0e246a702";
-      var ASSISTANT_ID  = "5fca175c-10cd-424f-ae81-f25088b5e19a";
-      // ─────────────────────────────────────────────────────────
+      try {
+        vapi = window.vapiSDK.run({
+          apiKey:    PUBLIC_KEY,
+          assistant: ASSISTANT_ID,
+          config: {
+            hideButton: true,
+            button: { position: "hidden" }
+          }
+        });
 
-      var vapi = window.vapiSDK.run({
-        apiKey:    PUBLIC_KEY,
-        assistant: ASSISTANT_ID,
-        config: {
-          // Hide Vapi's default button — we use our own
-          hideButton: true,
-          button: { position: "hidden" }
-        }
-      });
+        vapi.on("call-start", function () {
+          active = true;
+          btn.classList.add("active");
+          iconM.style.display = "none";
+          iconS.style.display = "block";
+          status.classList.add("show");
+          label.textContent = "Tap to end call";
+          label.classList.add("visible");
+        });
 
-      var btn    = document.getElementById("clara-btn");
-      var label  = document.getElementById("clara-label");
-      var status = document.getElementById("clara-status");
-      var iconM  = document.getElementById("icon-mic");
-      var iconS  = document.getElementById("icon-stop");
-      var active = false;
+        vapi.on("call-end", function () {
+          active = false;
+          btn.classList.remove("active");
+          iconM.style.display = "block";
+          iconS.style.display = "none";
+          status.classList.remove("show");
+          label.textContent = "Talk to Clara";
+          label.classList.remove("visible");
+        });
 
-      // Show label on hover
-      btn.addEventListener("mouseenter", function () {
-        label.classList.add("visible");
-      });
-      btn.addEventListener("mouseleave", function () {
-        label.classList.remove("visible");
-      });
+        vapi.on("error", function (e) {
+          console.error("Clara error:", e);
+          active = false;
+          btn.classList.remove("active");
+          iconM.style.display = "block";
+          iconS.style.display = "none";
+          status.classList.remove("show");
+          label.textContent = "Talk to Clara";
+        });
 
-      // Toggle call on click
-      btn.addEventListener("click", function () {
-        if (!active) {
-          vapi.start(ASSISTANT_ID, {
-            firstMessage: "Hi there! I'm Clara from KP Glass & Aluminum. How can I help you today?",
-            model: {
-              messages: [
-                {
-                  role: "system",
-                  content: "You are Clara, the friendly voice assistant for KP Glass & Aluminum Ltd. You are currently speaking with a visitor who is browsing the KP Glass website (not calling on the phone). Do NOT offer to text them or arrange a callback — they are on the website and can use the contact form or call directly. Help them with questions about services (glass glazing, aluminum fabrication, doors & windows, automatic door operators, service calls, and custom solutions), provide information about the company, or help them get in touch. KP Glass is located in Dartmouth, Nova Scotia and serves residential, commercial, and industrial clients across the province. Phone: 902-406-2595. Email: info@kp-glass.ca. Be warm, helpful, and concise. If the visitor wants to book a consultation or get a quote, encourage them to call or use the contact form on the website."
-                }
-              ]
-            }
-          });
-        } else {
-          vapi.stop();
-        }
-      });
-
-      // Vapi event listeners
-      vapi.on("call-start", function () {
-        active = true;
-        btn.classList.add("active");
-        iconM.style.display = "none";
-        iconS.style.display = "block";
-        status.classList.add("show");
-        label.textContent = "Tap to end call";
-        label.classList.add("visible");
-      });
-
-      vapi.on("call-end", function () {
-        active = false;
-        btn.classList.remove("active");
-        iconM.style.display = "block";
-        iconS.style.display = "none";
-        status.classList.remove("show");
-        label.textContent = "Talk to Clara";
-        label.classList.remove("visible");
-      });
-
-      vapi.on("error", function (e) {
-        console.error("Clara error:", e);
-        active = false;
-        btn.classList.remove("active");
-        iconM.style.display = "block";
-        iconS.style.display = "none";
-        status.classList.remove("show");
-        label.textContent = "Talk to Clara";
-      });
+        sdkReady = true;
+        console.log("Clara: Vapi SDK ready");
+      } catch (e) {
+        console.error("Clara: Vapi SDK init failed", e);
+      }
     };
-  })(document, "script");
+
+    g.onerror = function () {
+      console.error("Clara: Failed to load Vapi SDK");
+    };
+
+    document.head.appendChild(g);
+  })();
 </script>
 
 <!-- ============================================================
