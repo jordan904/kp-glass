@@ -1484,5 +1484,215 @@ window.addEventListener('scroll', () => {
   }
 });
 </script>
+    <!-- ============================================================
+     CLARA - KP Glass Voice Assistant (Vapi Embed)
+     Paste this entire block just before your closing </body> tag
+     in index.html. Replace the two placeholder values below.
+     ============================================================ -->
+
+<!-- STEP 1: Replace YOUR_VAPI_PUBLIC_KEY with your Vapi public key -->
+<!-- STEP 2: Replace YOUR_CLARA_ASSISTANT_ID with Clara's assistant ID -->
+<!-- Both values are found in your Vapi dashboard at vapi.ai         -->
+
+<style>
+  /* Floating button container */
+  #clara-widget {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  /* Tooltip label above the button */
+  #clara-label {
+    background: #1a1a1a;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    letter-spacing: 0.3px;
+  }
+
+  #clara-label.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Main mic button */
+  #clara-btn {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37, 99, 235, 0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+    position: relative;
+  }
+
+  #clara-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 32px rgba(37, 99, 235, 0.6);
+  }
+
+  #clara-btn:active {
+    transform: scale(0.96);
+  }
+
+  /* Active/listening state */
+  #clara-btn.active {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    box-shadow: 0 6px 24px rgba(220, 38, 38, 0.5);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+    70%  { box-shadow: 0 0 0 14px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+  }
+
+  /* Mic icon */
+  #clara-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: #ffffff;
+    pointer-events: none;
+  }
+
+  /* Status dot */
+  #clara-status {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2px solid #fff;
+    display: none;
+  }
+
+  #clara-status.show {
+    display: block;
+  }
+</style>
+
+<div id="clara-widget">
+  <div id="clara-label">Talk to Clara</div>
+  <button id="clara-btn" aria-label="Talk to Clara, KP Glass voice assistant" title="Talk to Clara">
+    <!-- Mic icon (idle state) -->
+    <svg id="icon-mic" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v6a2 2 0 0 0 4 0V5a2 2 0 0 0-2-2zm-7 8a1 1 0 0 1 1 1 6 6 0 0 0 12 0 1 1 0 0 1 2 0 8 8 0 0 1-7 7.938V21h3a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2h3v-2.062A8 8 0 0 1 4 12a1 1 0 0 1 1-1z"/>
+    </svg>
+    <!-- Stop icon (active state, hidden by default) -->
+    <svg id="icon-stop" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+      <rect x="6" y="6" width="12" height="12" rx="2"/>
+    </svg>
+    <span id="clara-status"></span>
+  </button>
+</div>
+
+<!-- Vapi SDK -->
+<script>
+  (function (d, t) {
+    var g = document.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+
+    g.onload = function () {
+      // ── REPLACE THESE TWO VALUES ──────────────────────────────
+      var PUBLIC_KEY    = 41c497f9-2361-4f30-944b-d0e0e246a702;
+      var ASSISTANT_ID  = 5fca175c-10cd-424f-ae81-f25088b5e19a;
+      // ─────────────────────────────────────────────────────────
+
+      var vapi = window.vapiSDK.run({
+        apiKey:    PUBLIC_KEY,
+        assistant: ASSISTANT_ID,
+        config: {
+          // Hide Vapi's default button — we use our own
+          button: { position: "hidden" }
+        }
+      });
+
+      var btn    = document.getElementById("clara-btn");
+      var label  = document.getElementById("clara-label");
+      var status = document.getElementById("clara-status");
+      var iconM  = document.getElementById("icon-mic");
+      var iconS  = document.getElementById("icon-stop");
+      var active = false;
+
+      // Show label on hover
+      btn.addEventListener("mouseenter", function () {
+        label.classList.add("visible");
+      });
+      btn.addEventListener("mouseleave", function () {
+        label.classList.remove("visible");
+      });
+
+      // Toggle call on click
+      btn.addEventListener("click", function () {
+        if (!active) {
+          vapi.start(ASSISTANT_ID);
+        } else {
+          vapi.stop();
+        }
+      });
+
+      // Vapi event listeners
+      vapi.on("call-start", function () {
+        active = true;
+        btn.classList.add("active");
+        iconM.style.display = "none";
+        iconS.style.display = "block";
+        status.classList.add("show");
+        label.textContent = "Tap to end call";
+        label.classList.add("visible");
+      });
+
+      vapi.on("call-end", function () {
+        active = false;
+        btn.classList.remove("active");
+        iconM.style.display = "block";
+        iconS.style.display = "none";
+        status.classList.remove("show");
+        label.textContent = "Talk to Clara";
+        label.classList.remove("visible");
+      });
+
+      vapi.on("error", function (e) {
+        console.error("Clara error:", e);
+        active = false;
+        btn.classList.remove("active");
+        iconM.style.display = "block";
+        iconS.style.display = "none";
+        status.classList.remove("show");
+        label.textContent = "Talk to Clara";
+      });
+    };
+  })(document, "script");
+</script>
+
+<!-- ============================================================
+     END CLARA WIDGET — paste everything above before </body>
+     ============================================================ -->
 </body>
 </html>
