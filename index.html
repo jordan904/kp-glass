@@ -1541,14 +1541,46 @@ window.addEventListener('scroll', () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 24px rgba(37, 99, 235, 0.45);
+    box-shadow: 0 0 20px rgba(59, 158, 255, 0.4), 0 0 60px rgba(37, 99, 235, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
     position: relative;
+    overflow: hidden;
+    animation: clara-glow 3s ease-in-out infinite;
+  }
+
+  /* Shimmer sweep */
+  #clara-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.15) 45%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.15) 55%,
+      transparent 70%
+    );
+    animation: clara-shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes clara-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(59, 158, 255, 0.4), 0 0 60px rgba(37, 99, 235, 0.2); }
+    50%      { box-shadow: 0 0 30px rgba(59, 158, 255, 0.6), 0 0 80px rgba(37, 99, 235, 0.3); }
+  }
+
+  @keyframes clara-shimmer {
+    0%   { transform: translateX(-100%) rotate(0deg); }
+    100% { transform: translateX(100%) rotate(0deg); }
   }
 
   #clara-btn:hover {
     transform: scale(1.08);
-    box-shadow: 0 10px 32px rgba(37, 99, 235, 0.6);
+    box-shadow: 0 0 30px rgba(59, 158, 255, 0.6), 0 0 80px rgba(37, 99, 235, 0.35);
   }
 
   #clara-btn:active {
@@ -1558,11 +1590,16 @@ window.addEventListener('scroll', () => {
   /* Active/listening state */
   #clara-btn.active {
     background: linear-gradient(135deg, #dc2626, #991b1b);
-    box-shadow: 0 6px 24px rgba(220, 38, 38, 0.5);
-    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.5), 0 0 60px rgba(220, 38, 38, 0.25);
+    animation: clara-pulse 1.5s infinite;
   }
 
-  @keyframes pulse {
+  #clara-btn.active::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  @keyframes clara-pulse {
     0%   { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
     70%  { box-shadow: 0 0 0 14px rgba(220, 38, 38, 0); }
     100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
