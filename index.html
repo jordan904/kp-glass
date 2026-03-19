@@ -1835,9 +1835,10 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   </button>
 </div>
 
-<!-- Vapi SDK -->
+<!-- Vapi SDK (static tag so browser preload hint connects to it) -->
+<script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js" defer></script>
 <script>
-  (function () {
+  document.addEventListener("DOMContentLoaded", function () {
     var PUBLIC_KEY   = "41c497f9-2361-4f30-944b-d0e0e246a702";
     var ASSISTANT_ID = "5fca175c-10cd-424f-ae81-f25088b5e19a";
 
@@ -1850,43 +1851,11 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     var vapi   = null;
     var sdkReady = false;
 
-    // Show label on hover
-    btn.addEventListener("mouseenter", function () {
-      label.classList.add("visible");
-    });
-    btn.addEventListener("mouseleave", function () {
-      label.classList.remove("visible");
-    });
-
-    // Toggle call on click
-    btn.addEventListener("click", function () {
-      if (!sdkReady || !vapi) {
-        console.warn("Clara: Vapi SDK still loading, please wait...");
-        label.textContent = "Loading...";
-        label.classList.add("visible");
-        setTimeout(function () {
-          label.textContent = "Talk to Clara";
-          label.classList.remove("visible");
-        }, 2000);
+    function initVapi() {
+      if (!window.vapiSDK) {
+        setTimeout(initVapi, 100);
         return;
       }
-      if (!active) {
-        btn.classList.add("connecting");
-        label.textContent = "Connecting...";
-        label.classList.add("visible", "connecting-text");
-        vapi.start(ASSISTANT_ID);
-      } else {
-        vapi.stop();
-      }
-    });
-
-    // Load Vapi SDK (pinned version, no @latest redirect)
-    var g = document.createElement("script");
-    g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-    g.defer = true;
-    g.async = true;
-
-    g.onload = function () {
       try {
         vapi = window.vapiSDK.run({
           apiKey: PUBLIC_KEY,
@@ -1935,14 +1904,40 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
       } catch (e) {
         console.error("Clara: Vapi SDK init failed", e);
       }
-    };
+    }
 
-    g.onerror = function () {
-      console.error("Clara: Failed to load Vapi SDK");
-    };
+    initVapi();
 
-    document.head.appendChild(g);
-  })();
+    // Show label on hover
+    btn.addEventListener("mouseenter", function () {
+      label.classList.add("visible");
+    });
+    btn.addEventListener("mouseleave", function () {
+      label.classList.remove("visible");
+    });
+
+    // Toggle call on click
+    btn.addEventListener("click", function () {
+      if (!sdkReady || !vapi) {
+        console.warn("Clara: Vapi SDK still loading, please wait...");
+        label.textContent = "Loading...";
+        label.classList.add("visible");
+        setTimeout(function () {
+          label.textContent = "Talk to Clara";
+          label.classList.remove("visible");
+        }, 2000);
+        return;
+      }
+      if (!active) {
+        btn.classList.add("connecting");
+        label.textContent = "Connecting...";
+        label.classList.add("visible", "connecting-text");
+        vapi.start(ASSISTANT_ID);
+      } else {
+        vapi.stop();
+      }
+    });
+  });
 </script>
 </body>
 </html>
