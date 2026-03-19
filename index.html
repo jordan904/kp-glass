@@ -1883,6 +1883,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     // Load Vapi SDK (pinned version, no @latest redirect)
     var g = document.createElement("script");
     g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+    g.defer = true;
     g.async = true;
 
     g.onload = function () {
