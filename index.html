@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://api.vapi.ai" crossorigin>
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/dist/vapi.js" as="script" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@1.1.9/dist/assets/index.js" as="script" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
@@ -1812,6 +1812,12 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     display: block;
   }
 
+  /* Force-hide Vapi's default injected button */
+  .vapi-btn,
+  [id^="vapi"] button,
+  iframe[src*="vapi"] {
+    display: none !important;
+  }
 </style>
 
 <div id="clara-widget">
@@ -1874,14 +1880,21 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
       }
     });
 
-    // Load Vapi Web SDK (lighter, no UI overhead)
+    // Load Vapi SDK (pinned version, no @latest redirect)
     var g = document.createElement("script");
-    g.src = "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.5.2/dist/vapi.js";
+    g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@1.1.9/dist/assets/index.js";
     g.async = true;
 
     g.onload = function () {
       try {
-        vapi = new window.Vapi(PUBLIC_KEY);
+        vapi = window.vapiSDK.run({
+          apiKey: PUBLIC_KEY,
+          assistant: ASSISTANT_ID,
+          config: {
+            hideButton: true,
+            button: { position: "hidden" }
+          }
+        });
 
         vapi.on("call-start", function () {
           active = true;
