@@ -1842,7 +1842,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         return;
       }
       if (!active) {
-        vapi.start();
+        vapi.start(ASSISTANT_ID);
       } else {
         vapi.stop();
       }
