@@ -1842,7 +1842,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         return;
       }
       if (!active) {
-        vapi.start(ASSISTANT_ID);
+        vapi.start();
       } else {
         vapi.stop();
       }
@@ -1858,6 +1858,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
       try {
         vapi = window.vapiSDK.run({
           apiKey:    PUBLIC_KEY,
+          assistant: ASSISTANT_ID,
           config: {
             hideButton: true,
             button: { position: "hidden" }
