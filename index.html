@@ -1758,6 +1758,35 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
   }
 
+  /* Connecting state */
+  #clara-btn.connecting {
+    background: linear-gradient(145deg, #d97706 0%, #b45309 50%, #92400e 100%);
+    box-shadow:
+      0 6px 24px rgba(217, 119, 6, 0.4),
+      inset 0 2px 4px rgba(255,255,255,0.12),
+      inset 0 -3px 6px rgba(0,0,0,0.25);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #clara-btn.connecting {
+      animation: clara-connecting 1.2s ease-in-out infinite;
+    }
+  }
+
+  @keyframes clara-connecting {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.95); }
+  }
+
+  #clara-label.connecting-text {
+    animation: label-pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes label-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
   /* Mic icon */
   #clara-btn svg {
     width: 26px;
@@ -1842,6 +1871,9 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         return;
       }
       if (!active) {
+        btn.classList.add("connecting");
+        label.textContent = "Connecting...";
+        label.classList.add("visible", "connecting-text");
         vapi.start(ASSISTANT_ID);
       } else {
         vapi.stop();
@@ -1867,6 +1899,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 
         vapi.on("call-start", function () {
           active = true;
+          btn.classList.remove("connecting");
+          label.classList.remove("connecting-text");
           btn.classList.add("active");
           iconM.style.display = "none";
           iconS.style.display = "block";
@@ -1888,7 +1922,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         vapi.on("error", function (e) {
           console.error("Clara error:", e);
           active = false;
-          btn.classList.remove("active");
+          btn.classList.remove("active", "connecting");
+          label.classList.remove("connecting-text");
           iconM.style.display = "block";
           iconS.style.display = "none";
           status.classList.remove("show");
