@@ -1,0 +1,7 @@
+name = "clara-vapi-webhook"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+EMAIL_TO = "jordan@novaworksdigital.ca"
+EMAIL_FROM = "Clara <clara@novaworksdigital.ca>"
