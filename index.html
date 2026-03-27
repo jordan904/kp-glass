@@ -188,17 +188,42 @@
     .nav-cta::after { display: none !important; }
     .nav-phone {
       display: inline-flex !important; align-items: center; gap: 0.4rem;
-      background: transparent !important; color: var(--white) !important;
-      border: 1.5px solid var(--accent); border-radius: 50px;
-      padding: 0.5rem 1.1rem !important; font-weight: 600; font-size: 0.85rem;
-      white-space: nowrap; transition: all 0.3s ease;
+      background: linear-gradient(180deg, #4db2ff 0%, var(--accent) 50%, #2a7acc 100%) !important;
+      color: var(--white) !important;
+      border: none; border-radius: 50px;
+      padding: 0.55rem 1.2rem !important; font-weight: 600; font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow:
+        0 4px 15px rgba(59, 158, 255, 0.3),
+        0 1px 3px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
     .nav-phone:hover {
-      background: var(--accent) !important;
-      transform: translateY(-1px);
+      transform: translateY(-3px);
+      box-shadow:
+        0 8px 30px rgba(59, 158, 255, 0.5),
+        0 4px 12px rgba(59, 158, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    }
+    .nav-phone:active {
+      transform: translateY(0);
+      box-shadow:
+        0 2px 8px rgba(59, 158, 255, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.15);
     }
     .nav-phone::after { display: none !important; }
-    .nav-phone svg { flex-shrink: 0; }
+    .nav-phone svg { flex-shrink: 0; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3)); }
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-phone { animation: phone-glow 3s ease-in-out infinite; }
+    }
+    @keyframes phone-glow {
+      0%, 100% { box-shadow: 0 4px 15px rgba(59,158,255,0.3), 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 4px rgba(0,0,0,0.15); }
+      50% { box-shadow: 0 4px 25px rgba(59,158,255,0.5), 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 4px rgba(0,0,0,0.15); }
+    }
     .nav-hamburger {
       display: none;
       flex-direction: column; gap: 5px;
