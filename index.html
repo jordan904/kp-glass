@@ -1178,6 +1178,11 @@
     }
     .form-group textarea { resize: vertical; min-height: 120px; }
     .form-group select option { background: var(--dark); }
+    .form-error {
+      color: #ff8a8a;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
     .form-submit {
       width: 100%;
       padding: 1rem;
@@ -1873,6 +1878,7 @@
           <label for="details">Project Details</label>
           <textarea id="details" name="details" placeholder="Tell us about your project..."></textarea>
         </div>
+        <p id="form-error" class="form-error" role="alert" style="display:none;"></p>
         <button type="submit" class="form-submit">Send Request</button>
       </form>
     </div>
@@ -2273,11 +2279,46 @@ var GALLERIES = {
 // ─── CONTACT FORM ───
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  if (this.querySelector('#company-url').value) return;
-  var btn = this.querySelector('.form-submit');
-  btn.textContent = 'Request Sent!';
-  btn.style.background = '#00d4aa';
-  btn.style.boxShadow = '0 4px 25px rgba(0,212,170,0.3)';
+  var form = this;
+  if (form.querySelector('#company-url').value) return;
+
+  var btn = form.querySelector('.form-submit');
+  var errorEl = document.getElementById('form-error');
+  var originalText = btn.textContent;
+  errorEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  var payload = {
+    name: form.name.value.trim(),
+    email: form.email.value.trim(),
+    phone: form.phone.value.trim(),
+    type: form.service.value || 'General inquiry / Get a Quote',
+    description: form.details.value.trim() || 'No additional project details provided.',
+    company: form['company-url'].value,
+  };
+
+  fetch('https://kp-chatbot.jordan-574.workers.dev/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+    .then(function (res) {
+      if (!res.ok) throw new Error('bad response');
+      return res.json();
+    })
+    .then(function () {
+      btn.textContent = 'Request Sent!';
+      btn.style.background = '#00d4aa';
+      btn.style.boxShadow = '0 4px 25px rgba(0,212,170,0.3)';
+      form.reset();
+    })
+    .catch(function () {
+      btn.disabled = false;
+      btn.textContent = originalText;
+      errorEl.textContent = 'Something went wrong sending your request. Please email info@kp-glass.ca or call 902-406-2595.';
+      errorEl.style.display = 'block';
+    });
 });
 </script>
 <script defer src="chatbot/chatbot.js"></script>
