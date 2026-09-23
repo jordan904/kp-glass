@@ -19,6 +19,19 @@
   var hasOpenedBefore = false;
   var isSending = false;
 
+  function getSessionId() {
+    try {
+      var id = sessionStorage.getItem("kpChatSessionId");
+      if (!id) {
+        id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+        sessionStorage.setItem("kpChatSessionId", id);
+      }
+      return id;
+    } catch (e) {
+      return "";
+    }
+  }
+
   var root = document.createElement("div");
   root.innerHTML =
     '<button id="kp-chat-toggle" aria-expanded="false" aria-controls="kp-chat-panel" aria-label="Chat with KP Assistant">' +
@@ -125,12 +138,17 @@
 
     isSending = true;
 
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timeoutId = controller ? setTimeout(function () { controller.abort(); }, 25000) : null;
+
     fetch(CHAT_API_BASE + "/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: messages }),
+      body: JSON.stringify({ messages: messages, sessionId: getSessionId() }),
+      signal: controller ? controller.signal : undefined,
     })
       .then(function (res) {
+        if (timeoutId) clearTimeout(timeoutId);
         if (!res.ok) throw new Error("bad response");
         return res.json();
       })
@@ -142,6 +160,7 @@
         appendBubble(messagesEl, "assistant", reply);
       })
       .catch(function () {
+        if (timeoutId) clearTimeout(timeoutId);
         var typingEl = document.getElementById("kp-chat-typing");
         if (typingEl) typingEl.remove();
         appendBubble(

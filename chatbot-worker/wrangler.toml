@@ -7,3 +7,7 @@ ALLOWED_ORIGINS = "https://www.kp-glass.ca,https://kp-glass.ca,https://jordan904
 
 [ai]
 binding = "AI"
+
+[[kv_namespaces]]
+binding = "CHAT_LOGS"
+id = "d7984fba4a524f7497f7b1028dd2c472"

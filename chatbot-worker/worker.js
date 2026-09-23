@@ -1,6 +1,7 @@
 const MAX_MESSAGE_LENGTH = 2000;
 const MAX_HISTORY = 12;
 const CHAT_MODEL = "@cf/meta/llama-3.1-8b-instruct-fp8";
+const LOG_RETENTION_SECONDS = 60 * 60 * 24 * 90; // 90 days
 
 const SYSTEM_PROMPT_BASE = `You are KP Assistant, the website chat assistant for KP Glass & Aluminum Ltd., a glass glazing and aluminum fabrication company based in Dartmouth, Nova Scotia. Licensed and insured, A+ BBB rated.
 
@@ -47,7 +48,7 @@ KP's sister company, Creek Ocean Construction, provides general contracting, com
 Never invent information not covered here. Do not discuss competitors, and do not give legal, financial, or technical advice. If you don't know something, say so and offer to connect them with the team.`;
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get("Origin") || "";
     const allowedOrigins = (env.ALLOWED_ORIGINS || "")
       .split(",")
@@ -63,7 +64,7 @@ export default {
 
     try {
       if (url.pathname === "/chat" && request.method === "POST") {
-        return await handleChat(request, env, corsHeaders);
+        return await handleChat(request, env, corsHeaders, ctx);
       }
       if (url.pathname === "/lead" && request.method === "POST") {
         return await handleLead(request, env, corsHeaders);
@@ -110,9 +111,10 @@ function getAtlanticStatus() {
   return isWeekday && minutesOfDay >= 7 * 60 + 30 && minutesOfDay < 16 * 60 ? "open" : "closed";
 }
 
-async function handleChat(request, env, corsHeaders) {
+async function handleChat(request, env, corsHeaders, ctx) {
   const body = await request.json();
   const messages = Array.isArray(body.messages) ? body.messages : [];
+  const sessionId = typeof body.sessionId === "string" ? body.sessionId.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 64) : "";
 
   const trimmed = messages
     .slice(-MAX_HISTORY)
@@ -126,7 +128,7 @@ async function handleChat(request, env, corsHeaders) {
     return json({ error: "No valid messages provided" }, 400, corsHeaders);
   }
 
-  const systemPrompt = `${SYSTEM_PROMPT_BASE}\n\nCurrent status: our office is currently ${getAtlanticStatus()} (Mon–Fri, 8:00 AM–5:00 PM Atlantic Time).`;
+  const systemPrompt = `${SYSTEM_PROMPT_BASE}\n\nCurrent status: our office is currently ${getAtlanticStatus()} (Mon–Fri, 7:30 AM–4:00 PM Atlantic Time).`;
 
   let result;
   try {
@@ -140,6 +142,17 @@ async function handleChat(request, env, corsHeaders) {
   }
 
   const reply = result?.response || "Sorry, I didn't catch that — could you rephrase?";
+
+  if (sessionId && env.CHAT_LOGS) {
+    const logEntry = JSON.stringify({
+      messages: [...trimmed, { role: "assistant", content: reply }],
+      updatedAt: new Date().toISOString(),
+    });
+    const writeLog = env.CHAT_LOGS.put(`session:${sessionId}`, logEntry, {
+      expirationTtl: LOG_RETENTION_SECONDS,
+    }).catch((err) => console.error("KV log write failed:", err && err.message ? err.message : err));
+    if (ctx && ctx.waitUntil) ctx.waitUntil(writeLog);
+  }
 
   return json({ reply }, 200, corsHeaders);
 }
