@@ -263,11 +263,16 @@
   margin-top: 0.6rem;
 }
 
-.kp-chat-alt-action button {
+.kp-chat-alt-action button,
+button.kp-chat-alt-action {
   background: none;
+  border: none;
   color: var(--accent-light);
   text-decoration: underline;
   font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
 }
 
 /* ─── Lead form ─── */
