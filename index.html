@@ -12,6 +12,7 @@
 <meta property="og:url" content="https://www.kp-glass.ca">
 <meta property="og:image" content="https://www.kp-glass.ca/images/kp-logo.png">
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="preload" as="image" href="images/hero-kp-commercial.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -249,7 +250,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('images/hero-radian.jpg') center/cover no-repeat;
+      background: url('images/hero-kp-commercial.jpg') center/cover no-repeat;
       transform: scale(1.05);
       transition: transform 8s ease-out;
     }
@@ -610,12 +611,23 @@
     }
     .project-card {
       position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      font-family: inherit;
+      background: none;
       border-radius: 16px;
       overflow: hidden;
       aspect-ratio: 4/3;
       cursor: pointer;
       border: 1px solid var(--border);
       transition: all 0.4s;
+    }
+    .project-card:focus-visible {
+      outline: 3px solid var(--accent-light);
+      outline-offset: 3px;
     }
     .project-card:hover {
       border-color: rgba(59,158,255,0.2);
@@ -649,12 +661,29 @@
       margin-bottom: 0.5rem;
       width: fit-content;
     }
-    .project-card h3 {
+    .project-name {
+      display: block;
       font-family: var(--font-secondary);
       font-size: 1.15rem;
       font-weight: 600;
+      line-height: 1.3;
       color: var(--white);
     }
+    .project-name-sub {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--light-gray);
+    }
+    .project-count {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--gray);
+    }
+    .project-count svg { width: 14px; height: 14px; }
     .project-card .arrow {
       position: absolute;
       top: 1.2rem; right: 1.2rem;
@@ -685,8 +714,12 @@
       align-items: center;
     }
     .access-img {
+      display: block;
       width: 100%;
-      height: 450px;
+      max-width: 420px;
+      height: auto;
+      aspect-ratio: 2/3;
+      margin: 0 auto;
       object-fit: cover;
       border-radius: 16px;
       border: 1px solid var(--border);
@@ -759,6 +792,263 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       margin-top: 0.5rem;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      padding: 8rem 0;
+      content-visibility: auto;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .testimonials-header .section-label { justify-content: center; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .testimonial-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(59,158,255,0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(5,10,20,0.45);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 0.25rem;
+      color: var(--accent);
+    }
+    .testimonial-stars svg { width: 18px; height: 18px; }
+    .testimonial-card blockquote {
+      font-size: 0.98rem;
+      color: var(--light-gray);
+      overflow-wrap: break-word;
+    }
+    .testimonial-card blockquote::before { content: '\201C'; }
+    .testimonial-card blockquote::after { content: '\201D'; }
+    .testimonial-card figcaption {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      margin-top: auto;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+    .testimonial-name {
+      font-family: var(--font-secondary);
+      font-weight: 600;
+      color: var(--white);
+    }
+    .testimonial-role {
+      font-size: 0.82rem;
+      color: var(--gray);
+    }
+
+    /* ─── CAREERS ─── */
+    .careers {
+      padding: 0 0 8rem;
+      content-visibility: auto;
+    }
+    .careers-card {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--card) 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3.5rem;
+    }
+    .careers-content .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.4rem);
+      margin-bottom: 1.25rem;
+    }
+    .careers-content p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      max-width: 54ch;
+    }
+    .careers-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+    .careers-note {
+      font-size: 0.82rem;
+      margin-top: 1.25rem !important;
+      margin-bottom: 0 !important;
+    }
+    .careers-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      list-style: none;
+    }
+    .careers-perks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      font-size: 0.92rem;
+      color: var(--light-gray);
+    }
+    .careers-perks .icon {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(59,158,255,0.12);
+      border: 1px solid rgba(59,158,255,0.25);
+      color: var(--accent);
+      margin-top: 0.15rem;
+    }
+    .careers-perks .icon svg { width: 14px; height: 14px; }
+
+    /* ─── PROJECT GALLERY LIGHTBOX ─── */
+    .lightbox {
+      position: fixed; inset: 0;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      background: rgba(5,10,20,0.96);
+      backdrop-filter: blur(12px);
+      padding: 1.25rem clamp(1rem, 4vw, 3rem) 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      /* Closing: stay visible for the fade, then hide. Opening: become visible
+         immediately so focus can be moved into the dialog on the same frame. */
+      transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+    }
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 0.35s ease, visibility 0s linear 0s;
+    }
+    .lightbox-bar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lightbox-title {
+      font-family: var(--font-secondary);
+      font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .lightbox-counter {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .lightbox-close {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--glass-strong);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--white);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lightbox-close:hover { background: var(--accent); border-color: var(--accent); }
+    .lightbox-close svg { width: 20px; height: 20px; }
+    .lightbox-stage {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 0;
+    }
+    .lightbox-figure {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+    }
+    .lightbox-figure img {
+      max-width: 100%;
+      min-height: 0;
+      flex: 1;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    .lightbox-figure figcaption {
+      flex-shrink: 0;
+      max-width: 70ch;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--gray);
+      overflow-wrap: break-word;
+    }
+    .lightbox-nav {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--glass-strong);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--white);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lightbox-nav:hover { background: var(--accent); border-color: var(--accent); }
+    .lightbox-nav svg { width: 22px; height: 22px; }
+    .lightbox-thumbs {
+      flex-shrink: 0;
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      scrollbar-width: thin;
+    }
+    .lightbox-thumb {
+      flex-shrink: 0;
+      width: 84px; height: 62px;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      overflow: hidden;
+      background: none;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s, border-color 0.3s;
+    }
+    .lightbox-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .lightbox-thumb:hover { opacity: 0.85; }
+    .lightbox-thumb[aria-current="true"] { opacity: 1; border-color: var(--accent); }
+    .lightbox-close:focus-visible,
+    .lightbox-nav:focus-visible,
+    .lightbox-thumb:focus-visible {
+      outline: 3px solid var(--accent-light);
+      outline-offset: 2px;
     }
 
     /* ─── PARTNER / SISTER COMPANY ─── */
@@ -1013,6 +1303,9 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-badge::before { animation: none; }
       .marquee-inner { animation: none; }
+      .lightbox { transition: none; }
+      .testimonial-card { transition: border-color 0.3s; }
+      .testimonial-card:hover { transform: none; }
     }
 
     /* ─── RESPONSIVE ─── */
@@ -1023,6 +1316,8 @@
       .accessibility-grid { gap: 3rem; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .hero-stats { gap: 2rem; }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .careers-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -1054,6 +1349,16 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
       .partner-card { grid-template-columns: 1fr; }
       .partner-img { min-height: 250px; }
+      .testimonials { padding: 5rem 0; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .careers { padding-bottom: 5rem; }
+      .careers-card { padding: 2.5rem 1.75rem; }
+      .careers-actions .btn { flex: 1 1 100%; justify-content: center; }
+      .access-img { max-width: 340px; }
+      .lightbox { padding: 1rem 1rem 1.25rem; }
+      .lightbox-stage { gap: 0.4rem; padding: 1rem 0; }
+      .lightbox-nav { width: 44px; height: 44px; }
+      .lightbox-thumbs { display: none; }
       .contact-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -1102,7 +1407,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge">A+ BBB Rated</div>
-    <h1>Bringing Quality <span class="gradient-text">Glass & Aluminum</span> Solutions to Every Project</h1>
+    <h1>Commercial <span class="gradient-text">Glass & Aluminum</span> Solutions</h1>
     <p class="hero-desc">Expert glazing, aluminum fabrication, and custom door & window solutions for residential, commercial, and industrial spaces across Nova Scotia.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">
@@ -1224,14 +1529,14 @@
             <div class="label">BBB Rating</div>
           </div>
         </div>
-        <img class="about-img-main" src="images/glass-curtain-wall.jpg" alt="Glass curtain wall facade installation" width="600" height="500" loading="lazy" decoding="async">
+        <img class="about-img-main" src="images/about-automatic-entrance.jpg" alt="Aluminum-framed automatic sliding entrance doors installed in a commercial vestibule" width="600" height="500" loading="lazy" decoding="async">
         <img class="about-img-accent" src="images/luxury-bathroom-glass.jpg" alt="Luxury bathroom with custom glass shower enclosure" width="220" height="280" loading="lazy" decoding="async">
       </div>
       <div class="about-text">
         <div class="section-label reveal">About KP Glass</div>
         <h2 class="section-title reveal reveal-delay-1">Built on precision,<br>driven by <em>quality</em></h2>
         <p class="reveal reveal-delay-2">Since 2019, KP Glass & Aluminum has been delivering high-quality glass glazing, aluminum fabrication, and custom door & window solutions across Nova Scotia.</p>
-        <p class="reveal reveal-delay-2">From the Boss Plaza to the Sandman Hotel and IKEA Halifax, our work stands as proof of our commitment to precision craftsmanship and durable, elegant solutions.</p>
+        <p class="reveal reveal-delay-2">From Dalhousie University to Shannex and IKEA Halifax, our work reflects our commitment to quality workmanship, precision, and reliable glass and aluminum solutions.</p>
         <div class="about-features reveal reveal-delay-3">
           <div class="about-feature">
             <div class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
@@ -1260,34 +1565,46 @@
   <div class="container">
     <div class="projects-header">
       <div class="section-label reveal">Featured Projects</div>
-      <h2 class="section-title reveal reveal-delay-1">Glass & aluminum solutions<br>that <em>perform</em></h2>
-      <p class="reveal reveal-delay-2">From landmark commercial installations to precision residential upgrades.</p>
+      <h2 class="section-title reveal reveal-delay-1">Projects We're Proud<br>to Stand <em>Behind</em></h2>
+      <p class="reveal reveal-delay-2">A look at some of the commercial glass and aluminum projects completed by our team across Nova Scotia.</p>
     </div>
     <div class="projects-grid" style="justify-content: center;">
-      <div class="project-card reveal">
-        <img src="images/project-boss-plaza-2.jpg" alt="The Boss Plaza 2 commercial glass installation" width="480" height="360" loading="lazy" decoding="async">
-        <div class="project-card-overlay">
-          <span class="project-tag">Commercial</span>
-          <h3>The Boss Plaza 2</h3>
-        </div>
-        <div class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></div>
-      </div>
-      <div class="project-card reveal reveal-delay-1">
-        <img src="images/project-sandman-hotel.jpg" alt="Sandman Hotel glass and aluminum facade" width="480" height="360" loading="lazy" decoding="async">
-        <div class="project-card-overlay">
-          <span class="project-tag">Hospitality</span>
-          <h3>Sandman Hotel</h3>
-        </div>
-        <div class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></div>
-      </div>
-      <div class="project-card reveal reveal-delay-2">
+      <button type="button" class="project-card reveal" data-gallery="shannex" aria-haspopup="dialog">
+        <img src="images/project-shannex.jpg" alt="West Bedford Transitional Health, a Shannex facility with aluminum-framed glazing and a glazed entrance canopy" width="480" height="360" loading="lazy" decoding="async">
+        <span class="project-card-overlay">
+          <span class="project-tag">Healthcare</span>
+          <span class="project-name">Shannex</span>
+          <span class="project-count">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            14 photos
+          </span>
+        </span>
+        <span class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></span>
+      </button>
+      <button type="button" class="project-card reveal reveal-delay-1" data-gallery="dalhousie" aria-haspopup="dialog">
+        <img src="images/project-dalhousie-killam.jpg" alt="The Killam Memorial Library at Dalhousie University seen from University Avenue" width="480" height="360" loading="lazy" decoding="async">
+        <span class="project-card-overlay">
+          <span class="project-tag">Education</span>
+          <span class="project-name">Dalhousie University <span class="project-name-sub">Killam Memorial Library</span></span>
+          <span class="project-count">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            9 photos
+          </span>
+        </span>
+        <span class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></span>
+      </button>
+      <button type="button" class="project-card reveal reveal-delay-2" data-gallery="ikea" aria-haspopup="dialog">
         <img src="images/project-ikea-halifax.gif" alt="IKEA Halifax storefront glass installation" width="480" height="360" loading="lazy" decoding="async">
-        <div class="project-card-overlay">
+        <span class="project-card-overlay">
           <span class="project-tag">Retail</span>
-          <h3>IKEA Halifax</h3>
-        </div>
-        <div class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></div>
-      </div>
+          <span class="project-name">IKEA Halifax</span>
+          <span class="project-count">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            10 photos
+          </span>
+        </span>
+        <span class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></span>
+      </button>
     </div>
   </div>
 </section>
@@ -1321,10 +1638,10 @@
   <div class="container">
     <div class="accessibility-grid">
       <div class="reveal">
-        <div class="section-label">Accessibility Upgrades</div>
-        <h2 class="section-title reveal reveal-delay-1">Making spaces more<br><em>inclusive</em> & compliant</h2>
-        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1rem;">We help businesses and organizations improve safety, convenience, and code compliance with professional accessibility solutions.</p>
-        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1.5rem;">Ask us about the Government of Canada's Enabling Accessibility Fund (EAF) offering flat-rate grants to support your accessibility project.</p>
+        <div class="section-label">Accessibility Solutions</div>
+        <h2 class="section-title reveal reveal-delay-1">Making Spaces More<br><em>Accessible</em> for Everyone</h2>
+        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1rem;">We help businesses and organizations create safer, more accessible spaces with professional accessibility solutions designed to improve convenience, independence, and ease of access.</p>
+        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1.5rem;">Ask us about the Government of Canada's Enabling Accessibility Fund (EAF) and available funding opportunities that may help support your accessibility project.</p>
         <div class="access-list reveal reveal-delay-3">
           <div class="access-item">
             <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
@@ -1350,8 +1667,106 @@
         </div>
       </div>
       <div class="reveal reveal-delay-2">
-        <img class="access-img" src="images/paul-green-accessibility-unsplash.jpg" alt="Accessible building entrance with automatic doors" width="600" height="450" loading="lazy" decoding="async">
+        <img class="access-img" src="images/accessibility-push-to-open.jpg" alt="Push-to-open accessibility actuator beside an accessible washroom door" width="840" height="1260" loading="lazy" decoding="async">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT TESTIMONIALS -->
+<!-- ============================================================
+     PLACEHOLDER CONTENT: the quotes, names and companies below are
+     stand-ins so the layout can be reviewed. Replace all three with
+     the real testimonials once KP provides them.
+     ============================================================ -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="section-label reveal">Client Testimonials</div>
+      <h2 class="section-title reveal reveal-delay-1">Trusted by our clients.<br>Proven through our <em>work</em>.</h2>
+    </div>
+    <div class="testimonials-grid">
+      <figure class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="Rated 5 out of 5">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>Placeholder testimonial. This is where a client's comments about working with KP Glass &amp; Aluminum will appear, covering the quality of the installation and how the crew handled the project on site.</blockquote>
+        <figcaption>
+          <span class="testimonial-name">Client Name</span>
+          <span class="testimonial-role">Company Name, Project Name</span>
+        </figcaption>
+      </figure>
+      <figure class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="Rated 5 out of 5">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>Placeholder testimonial. A second client quote will sit here, with room for a few sentences about scheduling, communication throughout the build, and the finished result.</blockquote>
+        <figcaption>
+          <span class="testimonial-name">Client Name</span>
+          <span class="testimonial-role">Company Name, Project Name</span>
+        </figcaption>
+      </figure>
+      <figure class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="Rated 5 out of 5">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>Placeholder testimonial. A third quote will go here, leaving space for a longer comment about accessibility work, service calls, or a repeat project with the KP team.</blockquote>
+        <figcaption>
+          <span class="testimonial-name">Client Name</span>
+          <span class="testimonial-role">Company Name, Project Name</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="careers" id="careers">
+  <div class="container">
+    <div class="careers-card reveal">
+      <div class="careers-content">
+        <div class="section-label">Careers</div>
+        <h2 class="section-title">Build your career with<br><em>KP Glass &amp; Aluminum</em></h2>
+        <p>Interested in joining the KP Glass &amp; Aluminum team? While we do not currently have any open positions, we are always interested in connecting with skilled and motivated individuals.</p>
+        <p>If you would like to be considered for future opportunities, send us your resume and we will keep it on file.</p>
+        <div class="careers-actions">
+          <a href="mailto:info@kp-glass.ca?subject=Resume%20Submission%20for%20Future%20Opportunities&amp;body=Please%20attach%20your%20resume%20to%20this%20email%20and%20tell%20us%20a%20little%20about%20the%20work%20you%20are%20looking%20for." class="btn btn-primary">
+            Send Your Resume
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
+          <a href="tel:+19024062595" class="btn btn-outline">
+            902-406-2595
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+        </div>
+        <p class="careers-note">Attach your resume to the email and we will be in touch when a suitable position opens up.</p>
+      </div>
+      <ul class="careers-perks" role="list">
+        <li>
+          <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          Commercial projects across Nova Scotia
+        </li>
+        <li>
+          <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          Glazing, aluminum fabrication and door systems
+        </li>
+        <li>
+          <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          Experienced crews and year-round work
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1361,12 +1776,12 @@
   <div class="container">
     <div class="partner-card reveal">
       <div class="partner-img">
-        <img src="images/team-photo.jfif" alt="Creek Ocean Construction team on site" width="640" height="350" loading="lazy" decoding="async">
+        <img src="images/creek-ocean-construction.jpg" alt="Two Creek Ocean Construction workers in hard hats reviewing drawings on a job site" width="1280" height="960" loading="lazy" decoding="async">
       </div>
       <div class="partner-content">
         <div class="section-label">Sister Company</div>
         <h3>Creek Ocean Construction</h3>
-        <p>Our sister company specializes in premium remodelling, cabinetry, and custom carpentry for residential and commercial spaces across Nova Scotia. Together, we deliver comprehensive building solutions from structure to finish.</p>
+        <p>Our sister company, Creek Ocean Construction, provides general contracting, commercial renovations, custom millwork, and construction services across Nova Scotia. Together, KP Glass &amp; Aluminum and Creek Ocean Construction can provide clients with a wider range of solutions for their projects.</p>
         <a href="https://jordan904.github.io/creek-ocean/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width:fit-content;">
           Visit Creek Construction
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg>
@@ -1455,6 +1870,32 @@
 
 </main>
 
+<!-- PROJECT GALLERY LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" aria-hidden="true">
+  <div class="lightbox-bar">
+    <div class="lightbox-heading">
+      <h2 class="lightbox-title" id="lightbox-title"></h2>
+      <p class="lightbox-counter" id="lightbox-counter"></p>
+    </div>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close project gallery">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="lightbox-stage">
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous photo">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" src="" alt="">
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next photo">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+  <div class="lightbox-thumbs" id="lightbox-thumbs" role="list"></div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1483,6 +1924,8 @@
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#accessibility">Accessibility</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#careers">Careers</a></li>
           <li><a href="https://jordan904.github.io/creek-ocean/" target="_blank" rel="noopener noreferrer">Creek Construction</a></li>
         </ul>
       </div>
@@ -1623,6 +2066,194 @@ window.addEventListener('scroll', function() {
     parallaxTimeout = null;
   }, 16);
 }, { passive: true });
+
+// ─── PROJECT GALLERIES (lightbox) ───
+var GALLERIES = {
+  shannex: {
+    title: 'Shannex',
+    subtitle: 'West Bedford Transitional Health',
+    dir: 'images/projects/shannex/',
+    photos: [
+      'Site preparation and foundation work underway at the West Bedford site',
+      'Aluminum window framing installed along the ground floor exterior',
+      'Storefront framing and glazing progressing through the entrance wing',
+      'Automatic sliding entrance doors set in place with protective film still on',
+      'Interior glazed partitions installed ahead of finishing work',
+      'Completed exterior glazing and glazed entrance canopy',
+      'Finished lounge with full-height glazing overlooking the grounds',
+      'Interior automatic sliding doors in the finished corridor',
+      'Accessible washroom door fitted with a push-to-open operator',
+      'Finished corridor leading through to the accessible washroom',
+      'Barrier-free push-to-open actuator at the washroom entrance',
+      'Completed West Bedford Transitional Health exterior',
+      'Finished entrance lobby with glazed vestibule',
+      'Completed automatic entrance doors at the main entrance'
+    ]
+  },
+  dalhousie: {
+    title: 'Dalhousie University',
+    subtitle: 'Killam Memorial Library',
+    dir: 'images/projects/dalhousie/',
+    photos: [
+      'Scaffolding in place inside the library atrium at the start of the glazing work',
+      'Looking down into the atrium with the work area hoarded off below',
+      'Ground floor corridor sealed off during the replacement work',
+      'New atrium glazing and aluminum framing installed from the scaffold',
+      'Atrium glazing nearing completion with the skylight reglazed',
+      'New aluminum-framed storefront at the Student Accessibility Centre entrance',
+      'Completed atrium with natural light through the reglazed skylight',
+      'Finished study space beneath the completed atrium glazing',
+      'Killam Memorial Library exterior after completion'
+    ]
+  },
+  ikea: {
+    title: 'IKEA Halifax',
+    subtitle: 'Entrance glazing and automatic doors',
+    dir: 'images/projects/ikea/',
+    photos: [
+      'Existing entrance vestibule before the replacement work began',
+      'The main entrance before the new glazing and doors were installed',
+      'Entrance vestibule stripped back ahead of the new installation',
+      'Curved entrance canopy structure under construction',
+      'Temporary hoarding in place while the entrance is rebuilt',
+      'New curved glass vestibule taking shape inside the entrance',
+      'New aluminum-framed glazing installed along the entrance wall',
+      'Completed curved glass vestibule seen from the interior',
+      'Finished IKEA Halifax entrance with new automatic doors',
+      'Completed entrance exterior with new glazing and signage'
+    ]
+  }
+};
+
+(function() {
+  var lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+
+  var lbImg = document.getElementById('lightbox-img');
+  var lbCaption = document.getElementById('lightbox-caption');
+  var lbTitle = document.getElementById('lightbox-title');
+  var lbCounter = document.getElementById('lightbox-counter');
+  var lbThumbs = document.getElementById('lightbox-thumbs');
+  var lbClose = document.getElementById('lightbox-close');
+  var lbPrev = document.getElementById('lightbox-prev');
+  var lbNext = document.getElementById('lightbox-next');
+
+  var current = null;   // active gallery object
+  var index = 0;
+  var lastFocused = null;
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function src(gallery, i) { return gallery.dir + pad(i + 1) + '.jpg'; }
+
+  function preload(i) {
+    if (!current || i < 0 || i >= current.photos.length) return;
+    var img = new Image();
+    img.src = src(current, i);
+  }
+
+  function show(i) {
+    if (!current) return;
+    var total = current.photos.length;
+    index = (i + total) % total;
+    lbImg.src = src(current, index);
+    lbImg.alt = current.title + ': ' + current.photos[index];
+    lbCaption.textContent = current.photos[index];
+    lbCounter.textContent = 'Photo ' + (index + 1) + ' of ' + total;
+    Array.prototype.forEach.call(lbThumbs.children, function(btn, n) {
+      btn.setAttribute('aria-current', n === index ? 'true' : 'false');
+    });
+    var active = lbThumbs.children[index];
+    if (active && active.scrollIntoView) {
+      active.scrollIntoView({ block: 'nearest', inline: 'center' });
+    }
+    preload(index + 1);
+    preload(index - 1);
+  }
+
+  function buildThumbs(gallery) {
+    lbThumbs.textContent = '';
+    gallery.photos.forEach(function(caption, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lightbox-thumb';
+      btn.setAttribute('role', 'listitem');
+      btn.setAttribute('aria-label', 'Show photo ' + (i + 1) + ': ' + caption);
+      var img = document.createElement('img');
+      img.src = gallery.dir + pad(i + 1) + '-thumb.jpg';
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      btn.appendChild(img);
+      btn.addEventListener('click', function() { show(i); });
+      lbThumbs.appendChild(btn);
+    });
+  }
+
+  function open(slug, trigger) {
+    var gallery = GALLERIES[slug];
+    if (!gallery) return;
+    current = gallery;
+    lastFocused = trigger || document.activeElement;
+    lbTitle.textContent = gallery.subtitle ? gallery.title + ': ' + gallery.subtitle : gallery.title;
+    buildThumbs(gallery);
+    show(0);
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // Flush style so the dialog counts as visible (and so focusable) right away,
+    // then focus again on the next frame to win over the browser's own
+    // post-activation focus fixup on the card that was clicked.
+    void lightbox.offsetHeight;
+    lbClose.focus();
+    requestAnimationFrame(function() { lbClose.focus(); });
+  }
+
+  function close() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+    current = null;
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+    lastFocused = null;
+  }
+
+  document.querySelectorAll('[data-gallery]').forEach(function(card) {
+    card.addEventListener('click', function() {
+      open(card.getAttribute('data-gallery'), card);
+    });
+  });
+
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', function() { show(index - 1); });
+  lbNext.addEventListener('click', function() { show(index + 1); });
+
+  // Click on the backdrop (not on a control or the photo) closes the gallery.
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-stage') ||
+        e.target.classList.contains('lightbox-figure')) {
+      close();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!current) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); return; }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); return; }
+    if (e.key !== 'Tab') return;
+    // Keep focus inside the dialog while it is open.
+    var focusable = lightbox.querySelectorAll('button:not([disabled])');
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+})();
 
 // ─── CONTACT FORM ───
 document.getElementById('contact-form').addEventListener('submit', function(e) {
