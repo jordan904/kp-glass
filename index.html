@@ -12,14 +12,14 @@
 <meta property="og:site_name" content="KP Glass & Aluminum">
 <meta property="og:locale" content="en_CA">
 <meta property="og:url" content="https://kp-glass.ca/">
-<meta property="og:image" content="https://kp-glass.ca/images/og-kp-glass.jpg">
+<meta property="og:image" content="https://kp-glass.ca/images/og-kp-glass-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="KP Glass & Aluminum: commercial glass and aluminum solutions in Halifax, Nova Scotia">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Commercial Glass & Aluminum Halifax | KP Glass & Aluminum">
 <meta name="twitter:description" content="Commercial glass, glazing, curtain wall & automatic door installation across Halifax & HRM. Licensed, insured, AAADM certified.">
-<meta name="twitter:image" content="https://kp-glass.ca/images/og-kp-glass.jpg">
+<meta name="twitter:image" content="https://kp-glass.ca/images/og-kp-glass-v2.jpg">
 <link rel="canonical" href="https://kp-glass.ca/">
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link rel="preload" as="image" href="images/hero-kp-commercial.webp" type="image/webp" fetchpriority="high">
@@ -44,7 +44,7 @@
       "url": "https://kp-glass.ca/",
       "logo": "https://kp-glass.ca/images/kp-logo.png",
       "image": [
-        "https://kp-glass.ca/images/og-kp-glass.jpg",
+        "https://kp-glass.ca/images/og-kp-glass-v2.jpg",
         "https://kp-glass.ca/images/hero-kp-commercial.jpg"
       ],
       "telephone": "+1-902-406-2595",
@@ -312,9 +312,9 @@
       --border: rgba(255,255,255,0.06);
       --glass: rgba(255,255,255,0.04);
       --glass-strong: rgba(255,255,255,0.08);
-      --accent: #3b9eff;
-      --accent-glow: rgba(59,158,255,0.3);
-      --accent-light: #6bb5ff;
+      --accent: #00a0cc;
+      --accent-glow: rgba(0, 160, 204,0.3);
+      --accent-light: #00bcf0;
       --white: #ffffff;
       --gray: #8a9bb5;
       --light-gray: #c2d0e4;
@@ -407,14 +407,14 @@
     .nav-cta::after { display: none !important; }
     .nav-phone {
       display: inline-flex !important; align-items: center; gap: 0.4rem;
-      background: linear-gradient(180deg, #4db2ff 0%, var(--accent) 50%, #2a7acc 100%) !important;
+      background: linear-gradient(180deg, #1cb4e6 0%, var(--accent) 50%, #0088ac 100%) !important;
       color: var(--white) !important;
       border: none; border-radius: 50px;
       padding: 0.55rem 1.2rem !important; font-weight: 600; font-size: 0.85rem;
       white-space: nowrap;
       transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       box-shadow:
-        0 4px 15px rgba(59, 158, 255, 0.3),
+        0 4px 15px rgba(0, 160, 204, 0.3),
         0 1px 3px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.35),
         inset 0 -2px 4px rgba(0, 0, 0, 0.15);
@@ -423,15 +423,15 @@
     .nav-phone:hover {
       transform: translateY(-3px);
       box-shadow:
-        0 8px 30px rgba(59, 158, 255, 0.5),
-        0 4px 12px rgba(59, 158, 255, 0.3),
+        0 8px 30px rgba(0, 160, 204, 0.5),
+        0 4px 12px rgba(0, 160, 204, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.35),
         inset 0 -2px 4px rgba(0, 0, 0, 0.15);
     }
     .nav-phone:active {
       transform: translateY(0);
       box-shadow:
-        0 2px 8px rgba(59, 158, 255, 0.2),
+        0 2px 8px rgba(0, 160, 204, 0.2),
         inset 0 2px 4px rgba(0, 0, 0, 0.15);
     }
     .nav-phone::after { display: none !important; }
@@ -440,8 +440,8 @@
       .nav-phone { animation: phone-glow 3s ease-in-out infinite; }
     }
     @keyframes phone-glow {
-      0%, 100% { box-shadow: 0 4px 15px rgba(59,158,255,0.3), 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 4px rgba(0,0,0,0.15); }
-      50% { box-shadow: 0 4px 25px rgba(59,158,255,0.5), 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 4px rgba(0,0,0,0.15); }
+      0%, 100% { box-shadow: 0 4px 15px rgba(0, 160, 204,0.3), 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 4px rgba(0,0,0,0.15); }
+      50% { box-shadow: 0 4px 25px rgba(0, 160, 204,0.5), 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 4px rgba(0,0,0,0.15); }
     }
     .nav-hamburger {
       display: none;
@@ -517,7 +517,7 @@
       letter-spacing: -1px;
     }
     .hero h1 .gradient-text {
-      background: linear-gradient(135deg, var(--accent), var(--accent-light), #a3d8ff);
+      background: linear-gradient(135deg, var(--accent), var(--accent-light), #9fe3f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -559,7 +559,7 @@
     .btn-outline:hover {
       border-color: var(--accent);
       color: var(--accent-light);
-      background: rgba(59,158,255,0.05);
+      background: rgba(0, 160, 204,0.05);
     }
     .btn svg { width: 18px; height: 18px; }
     .hero-stats {
@@ -687,7 +687,7 @@
       transition: opacity 0.4s;
     }
     .service-card:hover {
-      border-color: rgba(59,158,255,0.2);
+      border-color: rgba(0, 160, 204,0.2);
       background: var(--glass-strong);
       transform: translateY(-4px);
     }
@@ -695,8 +695,8 @@
     .service-icon {
       width: 52px; height: 52px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(59,158,255,0.1);
-      border: 1px solid rgba(59,158,255,0.15);
+      background: rgba(0, 160, 204,0.1);
+      border: 1px solid rgba(0, 160, 204,0.15);
       border-radius: 12px;
       margin-bottom: 1.5rem;
       color: var(--accent);
@@ -748,9 +748,9 @@
     .about-glass-card {
       position: absolute;
       top: -1.5rem; left: -1.5rem;
-      background: rgba(59,158,255,0.1);
+      background: rgba(0, 160, 204,0.1);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(59,158,255,0.2);
+      border: 1px solid rgba(0, 160, 204,0.2);
       border-radius: 12px;
       padding: 1.2rem 1.5rem;
       display: flex; align-items: center; gap: 1rem;
@@ -847,7 +847,7 @@
       outline-offset: 3px;
     }
     .project-card:hover {
-      border-color: rgba(59,158,255,0.2);
+      border-color: rgba(0, 160, 204,0.2);
       transform: translateY(-4px);
     }
     .project-card img {
@@ -866,8 +866,8 @@
     }
     .project-tag {
       display: inline-block;
-      background: rgba(59,158,255,0.4);
-      border: 1px solid rgba(59,158,255,0.5);
+      background: rgba(0, 160, 204,0.4);
+      border: 1px solid rgba(0, 160, 204,0.5);
       color: var(--accent-light);
       font-size: 0.7rem;
       font-weight: 600;
@@ -955,13 +955,13 @@
       transition: all 0.3s;
     }
     .access-item:hover {
-      border-color: rgba(59,158,255,0.15);
+      border-color: rgba(0, 160, 204,0.15);
       background: var(--glass-strong);
     }
     .access-item .icon {
       width: 36px; height: 36px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(59,158,255,0.1);
+      background: rgba(0, 160, 204,0.1);
       border-radius: 8px;
       color: var(--accent);
       flex-shrink: 0;
@@ -1039,7 +1039,7 @@
       transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
     }
     .testimonial-card:hover {
-      border-color: rgba(59,158,255,0.2);
+      border-color: rgba(0, 160, 204,0.2);
       transform: translateY(-6px);
       box-shadow: 0 24px 48px rgba(5,10,20,0.45);
     }
@@ -1103,7 +1103,7 @@
       border-radius: 12px;
       transition: border-color 0.25s ease;
     }
-    .faq-item[open], .faq-item:hover { border-color: rgba(59,158,255,0.25); }
+    .faq-item[open], .faq-item:hover { border-color: rgba(0, 160, 204,0.25); }
     .faq-item summary {
       display: flex;
       align-items: center;
@@ -1202,8 +1202,8 @@
       width: 26px; height: 26px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
-      background: rgba(59,158,255,0.12);
-      border: 1px solid rgba(59,158,255,0.25);
+      background: rgba(0, 160, 204,0.12);
+      border: 1px solid rgba(0, 160, 204,0.25);
       color: var(--accent);
       margin-top: 0.15rem;
     }
@@ -1356,7 +1356,7 @@
       overflow: hidden;
       transition: border-color 0.3s;
     }
-    .partner-card:hover { border-color: rgba(59,158,255,0.15); }
+    .partner-card:hover { border-color: rgba(0, 160, 204,0.15); }
     .partner-img {
       height: 100%;
       min-height: 350px;
@@ -1409,8 +1409,8 @@
     .contact-info-item .icon {
       width: 42px; height: 42px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(59,158,255,0.1);
-      border: 1px solid rgba(59,158,255,0.15);
+      background: rgba(0, 160, 204,0.1);
+      border: 1px solid rgba(0, 160, 204,0.15);
       border-radius: 10px;
       color: var(--accent);
       flex-shrink: 0;
@@ -1581,8 +1581,8 @@
       transition: all 0.3s;
     }
     .footer-socials a:hover {
-      background: rgba(59,158,255,0.1);
-      border-color: rgba(59,158,255,0.3);
+      background: rgba(0, 160, 204,0.1);
+      border-color: rgba(0, 160, 204,0.3);
       color: var(--accent-light);
     }
     .footer-socials svg { width: 16px; height: 16px; }
@@ -1673,7 +1673,7 @@
       .marquee-inner { animation-duration: 15s; }
     }
 </style>
-<link rel="stylesheet" href="chatbot/chatbot.css?v=4">
+<link rel="stylesheet" href="chatbot/chatbot.css?v=5">
 </head>
 <body>
 
@@ -2679,6 +2679,6 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     });
 });
 </script>
-<script defer src="chatbot/chatbot.js?v=4"></script>
+<script defer src="chatbot/chatbot.js?v=5"></script>
 </body>
 </html>
