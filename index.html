@@ -990,8 +990,10 @@
     }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
+      max-width: 640px;
+      margin: 0 auto;
       text-align: center;
     }
     .stat-num {
@@ -1651,7 +1653,7 @@
       .about-glass-card { display: none; }
       .accessibility-grid { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .partner-card { grid-template-columns: 1fr; }
       .partner-img { min-height: 250px; }
       .testimonials { padding: 5rem 0; }
@@ -1726,10 +1728,6 @@
       <div class="hero-stat">
         <div class="hero-stat-num" data-target="5">0</div>
         <div class="hero-stat-label">Years Building</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" data-target="100">0</div>
-        <div class="hero-stat-label">Client Satisfaction</div>
       </div>
     </div>
 </section>
@@ -1918,10 +1916,6 @@
       <div class="stat-item reveal reveal-delay-1">
         <div class="stat-num" data-target="5">0</div>
         <div class="stat-label">Years Building</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-num" data-target="100">0</div>
-        <div class="stat-label">Client Satisfaction</div>
       </div>
     </div>
   </div>
