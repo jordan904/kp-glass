@@ -616,7 +616,6 @@
     .services {
       padding: 8rem 0;
       position: relative;
-      content-visibility: auto;
     }
     .section-label {
       display: inline-flex; align-items: center; gap: 0.6rem;
@@ -715,7 +714,6 @@
     .about {
       padding: 8rem 0;
       background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
-      content-visibility: auto;
     }
     .about-grid {
       display: grid;
@@ -807,7 +805,6 @@
     /* ─── PROJECTS ─── */
     .projects {
       padding: 8rem 0;
-      content-visibility: auto;
     }
     .projects-header {
       text-align: center;
@@ -920,7 +917,6 @@
     .accessibility-section {
       padding: 8rem 0;
       background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
-      content-visibility: auto;
     }
     .accessibility-grid {
       display: grid;
@@ -986,7 +982,6 @@
       background: var(--glass);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      content-visibility: auto;
     }
     .stats-grid {
       display: grid;
@@ -1012,7 +1007,6 @@
     /* ─── TESTIMONIALS ─── */
     .testimonials {
       padding: 8rem 0;
-      content-visibility: auto;
     }
     .testimonials-header {
       text-align: center;
@@ -1076,8 +1070,6 @@
     /* ─── FAQ ─── */
     .faq {
       padding: 0 0 8rem;
-      content-visibility: auto;
-      contain-intrinsic-size: auto 1200px;
     }
     .faq-header {
       text-align: center;
@@ -1154,7 +1146,6 @@
     /* ─── CAREERS ─── */
     .careers {
       padding: 0 0 8rem;
-      content-visibility: auto;
     }
     .careers-card {
       display: grid;
@@ -1285,6 +1276,7 @@
       justify-content: center;
       gap: 0.9rem;
     }
+    .lightbox-figure img.is-loading { opacity: 0.35; }
     .lightbox-figure img {
       max-width: 100%;
       min-height: 0;
@@ -1347,7 +1339,6 @@
     /* ─── PARTNER / SISTER COMPANY ─── */
     .partner {
       padding: 6rem 0;
-      content-visibility: auto;
     }
     .partner-card {
       display: grid;
@@ -1391,7 +1382,6 @@
     .contact {
       padding: 8rem 0;
       background: linear-gradient(180deg, var(--dark) 0%, var(--black) 100%);
-      content-visibility: auto;
     }
     .contact-grid {
       display: grid;
@@ -1686,7 +1676,7 @@
 <!-- NAVIGATION -->
 <nav id="nav">
   <div class="container">
-    <a href="#" class="nav-logo"><img src="images/kp-logo.png" alt="KP Glass & Aluminum" width="140" height="44"></a>
+    <a href="#" class="nav-logo"><picture><source srcset="images/kp-logo.webp" type="image/webp"><img src="images/kp-logo.png" alt="KP Glass & Aluminum" width="105" height="44"></picture></a>
     <ul class="nav-links" id="navLinks" role="list">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
@@ -1873,7 +1863,7 @@
     </div>
     <div class="projects-grid" style="justify-content: center;">
       <button type="button" class="project-card reveal" data-gallery="shannex" aria-haspopup="dialog">
-        <picture><source srcset="images/project-shannex.webp" type="image/webp"><img src="images/project-shannex.jpg" alt="West Bedford Transitional Health, a Shannex facility with aluminum-framed glazing and a glazed entrance canopy" width="480" height="360" loading="lazy" decoding="async"></picture>
+        <picture><source srcset="images/project-shannex-card.webp" type="image/webp"><img src="images/project-shannex-card.jpg" alt="West Bedford Transitional Health, a Shannex facility with aluminum-framed glazing and a glazed entrance canopy" width="480" height="360" loading="lazy" decoding="async"></picture>
         <span class="project-card-overlay">
           <span class="project-tag">Healthcare</span>
           <span class="project-name">Shannex</span>
@@ -1885,7 +1875,7 @@
         <span class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></span>
       </button>
       <button type="button" class="project-card reveal reveal-delay-1" data-gallery="dalhousie" aria-haspopup="dialog">
-        <picture><source srcset="images/project-dalhousie-killam.webp" type="image/webp"><img src="images/project-dalhousie-killam.jpg" alt="The Killam Memorial Library at Dalhousie University seen from University Avenue" width="480" height="360" loading="lazy" decoding="async"></picture>
+        <picture><source srcset="images/project-dalhousie-card.webp" type="image/webp"><img src="images/project-dalhousie-card.jpg" alt="The Killam Memorial Library at Dalhousie University seen from University Avenue" width="480" height="360" loading="lazy" decoding="async"></picture>
         <span class="project-card-overlay">
           <span class="project-tag">Education</span>
           <span class="project-name">Dalhousie University <span class="project-name-sub">Killam Memorial Library</span></span>
@@ -1897,7 +1887,7 @@
         <span class="arrow"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7m10 0v10"/></svg></span>
       </button>
       <button type="button" class="project-card reveal reveal-delay-2" data-gallery="ikea" aria-haspopup="dialog">
-        <img src="images/project-ikea-halifax.jpg" alt="IKEA Halifax storefront glass installation" width="480" height="360" loading="lazy" decoding="async">
+        <picture><source srcset="images/project-ikea-card.webp" type="image/webp"><img src="images/project-ikea-card.jpg" alt="IKEA Halifax storefront glass installation" width="480" height="360" loading="lazy" decoding="async"></picture>
         <span class="project-card-overlay">
           <span class="project-tag">Retail</span>
           <span class="project-name">IKEA Halifax</span>
@@ -2273,7 +2263,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#"><img src="images/kp-logo-white.png" alt="KP Glass & Aluminum" width="140" height="45" loading="lazy" decoding="async"></a>
+        <a href="#"><picture><source srcset="images/kp-logo-white.webp" type="image/webp"><img src="images/kp-logo-white.png" alt="KP Glass & Aluminum" width="140" height="58" loading="lazy" decoding="async"></picture></a>
         <p>Quality glass & aluminum solutions for residential, commercial, and industrial spaces across Nova Scotia.</p>
         <div class="bbb-badge">
           <svg fill="currentColor" viewBox="0 0 24 24" width="14" height="14"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
@@ -2521,7 +2511,10 @@ var GALLERIES = {
   var lastFocused = null;
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }
-  function src(gallery, i) { return gallery.dir + pad(i + 1) + '.jpg'; }
+  function src(gallery, i) { return gallery.dir + pad(i + 1) + '.webp'; }
+
+  lbImg.addEventListener('load', function() { lbImg.classList.remove('is-loading'); });
+  lbImg.addEventListener('error', function() { lbImg.classList.remove('is-loading'); });
 
   function preload(i) {
     if (!current || i < 0 || i >= current.photos.length) return;
@@ -2533,7 +2526,11 @@ var GALLERIES = {
     if (!current) return;
     var total = current.photos.length;
     index = (i + total) % total;
-    lbImg.src = src(current, index);
+    var next = src(current, index);
+    if (lbImg.getAttribute('src') !== next) {
+      lbImg.classList.add('is-loading');
+      lbImg.src = next;
+    }
     lbImg.alt = current.title + ': ' + current.photos[index];
     lbCaption.textContent = current.photos[index];
     lbCounter.textContent = 'Photo ' + (index + 1) + ' of ' + total;
@@ -2545,6 +2542,7 @@ var GALLERIES = {
       active.scrollIntoView({ block: 'nearest', inline: 'center' });
     }
     preload(index + 1);
+    preload(index + 2);
     preload(index - 1);
   }
 
@@ -2557,7 +2555,7 @@ var GALLERIES = {
       btn.setAttribute('role', 'listitem');
       btn.setAttribute('aria-label', 'Show photo ' + (i + 1) + ': ' + caption);
       var img = document.createElement('img');
-      img.src = gallery.dir + pad(i + 1) + '-thumb.jpg';
+      img.src = gallery.dir + pad(i + 1) + '-thumb.webp';
       img.alt = '';
       img.loading = 'lazy';
       img.decoding = 'async';
@@ -2596,7 +2594,18 @@ var GALLERIES = {
     lastFocused = null;
   }
 
+  function warm(slug) {
+    var g = GALLERIES[slug];
+    if (!g || g.warmed) return;
+    g.warmed = true;
+    [0, 1].forEach(function(n) { var img = new Image(); img.src = src(g, n); });
+  }
+
   document.querySelectorAll('[data-gallery]').forEach(function(card) {
+    var slug = card.getAttribute('data-gallery');
+    ['pointerenter', 'focus', 'touchstart'].forEach(function(evt) {
+      card.addEventListener(evt, function() { warm(slug); }, { passive: true });
+    });
     card.addEventListener('click', function() {
       open(card.getAttribute('data-gallery'), card);
     });
