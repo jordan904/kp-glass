@@ -176,6 +176,7 @@
 
   function renderLeadForm() {
     body.innerHTML =
+      '<div class="kp-chat-subbar"><button type="button" class="kp-chat-back" id="kp-chat-back-btn">← Back to chat</button></div>' +
       '<form class="kp-chat-lead-form" id="kp-chat-lead-form">' +
       '<div id="kp-chat-lead-error" class="kp-chat-lead-error" aria-live="polite"></div>' +
       '<div><label for="kp-lead-name">Name</label><input id="kp-lead-name" name="name" type="text" autocomplete="name" required></div>' +
@@ -192,7 +193,6 @@
       '<div><label for="kp-lead-desc">Tell us a bit about what you need</label><textarea id="kp-lead-desc" name="description" required></textarea></div>' +
       '<div class="kp-chat-lead-honeypot"><label for="kp-lead-company">Company</label><input id="kp-lead-company" name="company" type="text" tabindex="-1" aria-hidden="true" autocomplete="off"></div>' +
       '<button type="submit" class="kp-chat-lead-submit">Send to our team</button>' +
-      '<button type="button" class="kp-chat-alt-action" id="kp-chat-back-btn">← Back to chat</button>' +
       "</form>";
 
     document.getElementById("kp-chat-back-btn").addEventListener("click", renderChatView);
@@ -239,9 +239,9 @@
 
   function renderLeadSuccess() {
     body.innerHTML =
+      '<div class="kp-chat-subbar"><button type="button" class="kp-chat-back" id="kp-chat-back-btn-2">← Back to chat</button></div>' +
       '<div class="kp-chat-lead-success">' +
       "<p>Thanks! We've got your info and someone from our team will be in touch soon.</p>" +
-      '<button type="button" class="kp-chat-alt-action" id="kp-chat-back-btn-2">← Back to chat</button>' +
       "</div>";
     document.getElementById("kp-chat-back-btn-2").addEventListener("click", renderChatView);
   }
