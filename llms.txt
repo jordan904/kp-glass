@@ -29,5 +29,5 @@
 
 ## Pages
 - [Home](https://kp-glass.ca/): services, featured projects, accessibility solutions, FAQ, and contact form
-- [Privacy Policy](https://kp-glass.ca/privacy-policy.html)
-- [Terms of Service](https://kp-glass.ca/terms-of-service.html)
+- [Privacy Policy](https://kp-glass.ca/privacy-policy)
+- [Terms of Service](https://kp-glass.ca/terms-of-service)
