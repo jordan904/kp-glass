@@ -323,7 +323,7 @@
       --font-secondary: 'Space Grotesk', sans-serif;
       --container: 1280px;
     }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body {
       font-family: var(--font-primary);
       background: var(--black);
@@ -371,7 +371,11 @@
       max-width: none;
       padding: 0 3rem;
     }
-    .nav-logo img { height: 44px; width: auto; }
+    .nav-logo img { height: 72px; width: auto; }
+    nav.scrolled .nav-logo img { height: 54px; }
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-logo img { transition: height 0.3s ease; }
+    }
     .nav-links {
       display: flex; align-items: center;
       gap: 2.5rem; list-style: none;
@@ -1641,6 +1645,8 @@
       }
       .nav-links.active a { font-size: 1.2rem; }
       .nav-hamburger { display: flex; z-index: 1001; }
+      .nav-logo img { height: 52px; }
+      nav.scrolled .nav-logo img { height: 46px; }
       nav .container { padding: 0 1.5rem; }
       .hero h1 { font-size: clamp(2rem, 7vw, 3rem); }
       .hero-stats { display: none; }
@@ -1683,7 +1689,7 @@
 <!-- NAVIGATION -->
 <nav id="nav">
   <div class="container">
-    <a href="#" class="nav-logo"><picture><source srcset="images/kp-logo.webp" type="image/webp"><img src="images/kp-logo.png" alt="KP Glass & Aluminum" width="105" height="44"></picture></a>
+    <a href="#" class="nav-logo"><picture><source srcset="images/kp-logo-nav.webp" type="image/webp"><img src="images/kp-logo-nav.png" alt="KP Glass & Aluminum" width="172" height="72"></picture></a>
     <ul class="nav-links" id="navLinks" role="list">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
@@ -2262,7 +2268,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#"><picture><source srcset="images/kp-logo-white.webp" type="image/webp"><img src="images/kp-logo-white.png" alt="KP Glass & Aluminum" width="140" height="58" loading="lazy" decoding="async"></picture></a>
+        <a href="#"><picture><source srcset="images/kp-logo-nav.webp" type="image/webp"><img src="images/kp-logo-nav.png" alt="KP Glass & Aluminum" width="210" height="88" loading="lazy" decoding="async"></picture></a>
         <p>Quality glass & aluminum solutions for residential, commercial, and industrial spaces across Nova Scotia.</p>
         <div class="bbb-badge">
           <svg fill="currentColor" viewBox="0 0 24 24" width="14" height="14"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
