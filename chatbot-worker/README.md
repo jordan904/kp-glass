@@ -1,28 +1,26 @@
-# KP Assistant — Chat Worker
+# KP Assistant: Chat Worker
 
-Cloudflare Worker that powers the "KP Assistant" chat widget on the KP Glass
-& Aluminum site — same architecture as the Creek Ocean Construction chatbot
-(`../../creek/chatbot-worker/`): answers questions using Cloudflare Workers AI
-(free — no card, no separate account), and emails lead details (via
-Web3Forms — also free) when a visitor fills out the in-chat contact form.
+Cloudflare Worker behind the "KP Assistant" chat widget on the KP Glass &
+Aluminum site. Same architecture as the Creek Ocean Construction chatbot
+(`../../creek/chatbot-worker/`). It answers questions using Cloudflare Workers
+AI (free, no card or separate account needed) and emails lead details through
+Web3Forms (also free).
 
-Unlike Creek, KP routes every inquiry type (general, quotes, accessibility,
-careers) to the same inbox (`info@kp-glass.ca`), matching the existing
-"Send Your Resume" mailto link already on the site — so this only needs
-**one** Web3Forms access key, not two.
+KP routes every inquiry type (general, quotes, accessibility, careers) to the
+same inbox, `info@kp-glass.ca`, so this Worker needs only **one** Web3Forms
+access key. Creek's needs two.
 
 ## Setup
 
-### 1. Workers AI — no signup needed
+### 1. Workers AI: no signup needed
 Nothing to configure. The `[ai]` binding in `wrangler.toml` gives the Worker
-access to Cloudflare's free hosted models automatically, on the same
-Cloudflare account already used to deploy the Worker.
+access to Cloudflare's hosted models on the same account used to deploy it.
 
 ### 2. Web3Forms (free email delivery)
-- Go to **web3forms.com** and create an access key using `info@kp-glass.ca`.
-- No domain verification, no cost, no card required.
+Create an access key at **web3forms.com** using `info@kp-glass.ca`. No domain
+verification, cost, or card required.
 
-### 3. Deploy to Cloudflare Workers
+### 3. Deploy
 ```bash
 cd chatbot-worker
 npx wrangler login
@@ -30,30 +28,36 @@ npx wrangler secret put WEB3FORMS_ACCESS_KEY
 npx wrangler deploy
 ```
 
-This gives you a URL like: `https://kp-chatbot.YOUR_ACCOUNT.workers.dev`
-
-### 4. Point the widget at it
-In `../chatbot/chatbot.js`, set `CHAT_API_BASE` to that Worker URL.
+Deployed at `https://kp-chatbot.jordan-574.workers.dev`. That URL is set as
+`CHAT_API_BASE` in `../chatbot/chatbot.js` and is also used directly by the
+"Get a Quote" form in `../index.html`.
 
 ## Endpoints
-- `POST /chat` — `{ messages: [{ role, content }] }` → `{ reply }`
-- `POST /lead` — `{ name, email, phone?, type, description, transcript? }` → `{ ok: true }`
+- `POST /chat`: `{ messages: [{ role, content }], sessionId }` returns `{ reply }`
+- `POST /lead`: `{ name, email, phone?, type, description, transcript? }` returns `{ ok: true }`
 
-## Assumptions made when writing the system prompt (confirm/correct these)
-- **Business hours**: assumed Mon–Fri, 8:00 AM–5:00 PM Atlantic Time, same as
-  Creek — not stated anywhere on the KP site. Update `getAtlanticStatus()` in
-  `worker.js` if different.
-- **Bot name**: "KP Assistant", for naming parity with Creek's "Creek
-  Assistant". Easy to rename back to "Clara" in `chatbot.js` if you'd rather
-  keep that branding from the old voice assistant.
-- No KP-specific chatbot questionnaire exists yet (unlike Creek's), so the
-  FAQ hand-off list mirrors Creek's conservative defaults (no price quotes,
-  no warranty specifics, no grant amounts, etc.) rather than KP-confirmed
-  answers. Worth a quick review pass once live.
+## Conversation logging
+Each chat conversation is saved to the `CHAT_LOGS` KV namespace
+(`d7984fba4a524f7497f7b1028dd2c472`) under `session:<id>`, where the id is a
+random UUID the widget keeps in `sessionStorage`. Entries expire after 90
+days. `../privacy-policy.html` describes exactly this, so keep the two in sync.
+
+To read logs, always pass `--remote` (without it, wrangler reads a local
+simulated store and shows nothing):
+```bash
+npx wrangler kv key list --namespace-id d7984fba4a524f7497f7b1028dd2c472 --remote
+npx wrangler kv key get --namespace-id d7984fba4a524f7497f7b1028dd2c472 --remote "session:<id>"
+```
+
+## System prompt
+The prompt in `worker.js` is built from `../KP Chatbot Answer.pdf` (the
+client's questionnaire, kept out of the public repo). Business hours are
+Mon to Fri, 7:30 AM to 4:00 PM Atlantic; `getAtlanticStatus()` uses the same
+hours, so change both together.
 
 ## Notes
-- `ALLOWED_ORIGINS` in `wrangler.toml` controls CORS — update it if the live
+- `ALLOWED_ORIGINS` in `wrangler.toml` controls CORS. Update it when the live
   domain changes.
 - No client-side API keys: everything sensitive stays in Worker secrets.
-- Consider adding a Cloudflare rate-limiting rule on `/chat` and `/lead` in
-  the dashboard if usage grows, to cap cost from abuse.
+- Consider a Cloudflare rate-limiting rule on `/chat` and `/lead` if usage
+  grows, to cap abuse.

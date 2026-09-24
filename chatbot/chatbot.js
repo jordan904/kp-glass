@@ -155,7 +155,7 @@
       .then(function (data) {
         var typingEl = document.getElementById("kp-chat-typing");
         if (typingEl) typingEl.remove();
-        var reply = data.reply || "Sorry, I didn't catch that — could you rephrase?";
+        var reply = data.reply || "Sorry, I didn't catch that. Could you rephrase?";
         messages.push({ role: "assistant", content: reply });
         appendBubble(messagesEl, "assistant", reply);
       })
@@ -240,7 +240,7 @@
   function renderLeadSuccess() {
     body.innerHTML =
       '<div class="kp-chat-lead-success">' +
-      "<p>Thanks — we've got your info and someone from our team will be in touch soon.</p>" +
+      "<p>Thanks! We've got your info and someone from our team will be in touch soon.</p>" +
       '<button type="button" class="kp-chat-alt-action" id="kp-chat-back-btn-2">← Back to chat</button>' +
       "</div>";
     document.getElementById("kp-chat-back-btn-2").addEventListener("click", renderChatView);
