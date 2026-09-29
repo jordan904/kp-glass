@@ -40,7 +40,7 @@
       "@id": "https://kp-glass.ca/#business",
       "name": "KP Glass & Aluminum Ltd.",
       "alternateName": "KP Glass & Aluminum",
-      "description": "Commercial glass and aluminum company in Dartmouth, Nova Scotia providing glazing, aluminum fabrication, curtain walls, storefronts, doors and windows, automatic door operators, and accessibility solutions across Halifax Regional Municipality.",
+      "description": "Commercial glass and aluminum company in Dartmouth, Nova Scotia providing curtain wall and storefronts, commercial doors and entrances, glass replacement and interior glazing, architectural cladding, automatic door operators, and service and repairs across Halifax Regional Municipality.",
       "url": "https://kp-glass.ca/",
       "logo": "https://kp-glass.ca/images/kp-logo.png",
       "image": [
@@ -108,11 +108,12 @@
         "Commercial glazing",
         "Curtain walls",
         "Storefront glass",
+        "Commercial entrances",
         "Automatic doors",
-        "Aluminum fabrication",
+        "Architectural cladding",
+        "Glass replacement",
         "Glass railings",
         "Office glass",
-        "Window replacement",
         "Barrier-free entrances"
       ],
       "hasOfferCatalog": {
@@ -123,40 +124,40 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Commercial Glass and Glazing",
-              "description": "Glass installation, replacement, and repair for commercial and residential spaces, including storefront glass, interior and office glass, reception glass, shower glass, glass railings, and other custom glass applications."
+              "name": "Curtain Wall & Storefronts",
+              "description": "Aluminum curtain wall and storefront systems for commercial and institutional buildings."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Doors & Windows",
-              "description": "High-performance doors and windows engineered for energy efficiency, security, and accessibility."
+              "name": "Commercial Doors & Entrances",
+              "description": "Aluminum entrance systems, glass entrance doors, and high-performance commercial doors."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Automatic Door Operators",
-              "description": "Supply and installation of aluminum entrance systems for commercial and institutional properties, including glass entrance doors, aluminum framing, automatic sliding doors, and automatic door operators."
+              "name": "Glass Replacement & Interior Glazing",
+              "description": "Glass installation, replacement, and repair, including storefront, interior and office glass, shower glass, and glass railings."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Aluminum Fabrication",
-              "description": "Custom aluminum structures designed for strength and longevity, including curtain walls, storefronts, and architectural elements."
+              "name": "Architectural Cladding",
+              "description": "Architectural cladding coordinated with glazing and aluminum work."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Custom Solutions",
-              "description": "Tailored designs to meet specific project needs, from concept to completion."
+              "name": "Automatic Door Operators & Accessibility",
+              "description": "Supply, installation, and servicing of automatic sliding doors, door operators, and accessible entrances."
             }
           },
           {
@@ -164,15 +165,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Service & Repairs",
-              "description": "Repairs and maintenance for glass glazing, aluminum doors, windows, and automatic door operators."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Accessibility Solutions",
-              "description": "Automatic door operators, barrier-free entrances, and accessible ramps and washrooms."
+              "description": "Repairs and maintenance for glazing, aluminum doors, windows, and automatic door operators."
             }
           }
         ]
@@ -197,7 +190,7 @@
           "name": "What services does KP Glass & Aluminum offer?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We provide commercial glass and glazing, doors and windows, automatic door operators and entrance systems, aluminum fabrication for curtain walls and storefronts, custom solutions, and service and repairs. We also install accessibility solutions such as automatic door operators, barrier-free entrances, and accessible ramps and washrooms."
+            "text": "We provide curtain wall and storefronts, commercial doors and entrances, glass replacement and interior glazing, architectural cladding, automatic door operators and accessible entrances, and service and repairs. For ramps, washroom renovations, and other construction work, we coordinate with our sister company, Creek Ocean Construction."
           }
         },
         {
@@ -285,7 +278,7 @@
           "name": "Is funding available for accessibility upgrades?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ask us about the Government of Canada's Enabling Accessibility Fund (EAF) and available funding opportunities that may help support your accessibility project."
+            "text": "Funding may be available for eligible accessibility projects, depending on current programs and application requirements. Contact us to discuss your project."
           }
         },
         {
@@ -395,6 +388,7 @@
       transition: width 0.3s;
     }
     .nav-links a:hover::after { width: 100%; }
+    .nav-links a { white-space: nowrap; }
     .nav-cta {
       background: var(--accent) !important;
       color: var(--white) !important;
@@ -1361,6 +1355,9 @@
       transition: border-color 0.3s;
     }
     .partner-card:hover { border-color: rgba(0, 160, 204,0.15); }
+    .partner-card + .partner-card { margin-top: 1.5rem; }
+    .partner-card-text { grid-template-columns: 1fr; }
+    .partner-card-text .partner-content { padding: 2.5rem 3rem; }
     .partner-img {
       height: 100%;
       min-height: 350px;
@@ -1500,6 +1497,19 @@
     }
     /* Honeypot */
     .form-hp { position: absolute; left: -9999px; }
+    .contact-options { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .contact-options .btn { white-space: nowrap; }
+    .form-choice { border: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-bottom: 1.25rem; }
+    .form-choice legend { width: 100%; font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem; font-weight: 500; }
+    .form-choice label { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0 1rem; border: 1px solid var(--border); border-radius: 8px; color: var(--light-gray); cursor: pointer; }
+    .form-choice label:has(input:checked) { border-color: var(--accent); color: var(--white); background: rgba(0, 160, 204, 0.12); }
+    .form-choice input { accent-color: var(--accent); width: 18px; height: 18px; }
+    .form-choice input:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+    .form-note { font-size: 0.82rem; color: var(--gray); margin: 0.25rem 0 1rem; }
+    .form-note a { color: var(--accent-light); text-decoration: underline; }
+    .service-link { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; margin-top: 0.5rem; color: var(--accent-light); font-weight: 600; font-size: 0.88rem; }
+    .service-link svg { width: 16px; height: 16px; }
+    .service-link:hover { text-decoration: underline; }
 
     /* ─── FOOTER ─── */
     footer {
@@ -1620,17 +1630,8 @@
     }
 
     /* ─── RESPONSIVE ─── */
-    @media (max-width: 1024px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { gap: 3rem; }
-      .accessibility-grid { gap: 3rem; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-      .hero-stats { gap: 2rem; bottom: 8.5rem; }
-      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-      .careers-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem; }
-    }
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
+      nav.scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(5,10,20,0.97); }
       .nav-links { display: none; }
       .nav-links.active {
         display: flex;
@@ -1645,6 +1646,18 @@
       }
       .nav-links.active a { font-size: 1.2rem; }
       .nav-hamburger { display: flex; z-index: 1001; }
+    }
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 3rem; }
+      .accessibility-grid { gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .hero-stats { gap: 2rem; bottom: 8.5rem; }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .careers-card { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem; }
+    }
+    @media (max-width: 768px) {
       .nav-logo img { height: 52px; }
       nav.scrolled .nav-logo img { height: 46px; }
       nav .container { padding: 0 1.5rem; }
@@ -1679,7 +1692,7 @@
       .marquee-inner { animation-duration: 15s; }
     }
 </style>
-<link rel="stylesheet" href="chatbot/chatbot.css?v=5">
+<link rel="stylesheet" href="chatbot/chatbot.css?v=6">
 </head>
 <body>
 
@@ -1696,7 +1709,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#accessibility">Accessibility</a></li>
       <li><a href="https://jordan904.github.io/creek-ocean/" target="_blank" rel="noopener noreferrer">Creek Construction</a></li>
-      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+      <li><a href="#contact" class="nav-cta" data-inquiry="quote">Get a Quote</a></li>
       <li><a href="tel:+19024062595" class="nav-phone" aria-label="Call KP Glass at 902-406-2595"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 902-406-2595</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
@@ -1714,9 +1727,9 @@
   <div class="hero-content">
     <div class="hero-badge">A+ BBB Rated</div>
     <h1>Commercial <span class="gradient-text">Glass & Aluminum</span> Solutions</h1>
-    <p class="hero-desc">Expert glazing, aluminum fabrication, and custom door & window solutions for residential, commercial, and industrial spaces across Nova Scotia.</p>
+    <p class="hero-desc">Commercial glazing, curtain wall, storefronts, aluminum entrances, and architectural cladding across Nova Scotia. We support new construction, renovations, and ongoing building maintenance, including glass replacement and automatic door operators.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">
+      <a href="#contact" class="btn btn-primary" data-inquiry="quote">
         Start Your Project
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
       </a>
@@ -1741,22 +1754,22 @@
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-inner">
-    <div class="marquee-item"><span class="dot"></span>Glass Glazing</div>
-    <div class="marquee-item"><span class="dot"></span>Aluminum Fabrication</div>
-    <div class="marquee-item"><span class="dot"></span>Doors & Windows</div>
+    <div class="marquee-item"><span class="dot"></span>Curtain Wall</div>
+    <div class="marquee-item"><span class="dot"></span>Storefronts</div>
+    <div class="marquee-item"><span class="dot"></span>Commercial Entrances</div>
+    <div class="marquee-item"><span class="dot"></span>Glass Replacement</div>
+    <div class="marquee-item"><span class="dot"></span>Interior Glazing</div>
+    <div class="marquee-item"><span class="dot"></span>Architectural Cladding</div>
     <div class="marquee-item"><span class="dot"></span>Automatic Door Operators</div>
-    <div class="marquee-item"><span class="dot"></span>Custom Solutions</div>
-    <div class="marquee-item"><span class="dot"></span>Service Calls</div>
-    <div class="marquee-item"><span class="dot"></span>Curtain Wall Systems</div>
-    <div class="marquee-item"><span class="dot"></span>Storefront Installations</div>
-    <div class="marquee-item"><span class="dot"></span>Glass Glazing</div>
-    <div class="marquee-item"><span class="dot"></span>Aluminum Fabrication</div>
-    <div class="marquee-item"><span class="dot"></span>Doors & Windows</div>
+    <div class="marquee-item"><span class="dot"></span>Service &amp; Repairs</div>
+    <div class="marquee-item"><span class="dot"></span>Curtain Wall</div>
+    <div class="marquee-item"><span class="dot"></span>Storefronts</div>
+    <div class="marquee-item"><span class="dot"></span>Commercial Entrances</div>
+    <div class="marquee-item"><span class="dot"></span>Glass Replacement</div>
+    <div class="marquee-item"><span class="dot"></span>Interior Glazing</div>
+    <div class="marquee-item"><span class="dot"></span>Architectural Cladding</div>
     <div class="marquee-item"><span class="dot"></span>Automatic Door Operators</div>
-    <div class="marquee-item"><span class="dot"></span>Custom Solutions</div>
-    <div class="marquee-item"><span class="dot"></span>Service Calls</div>
-    <div class="marquee-item"><span class="dot"></span>Curtain Wall Systems</div>
-    <div class="marquee-item"><span class="dot"></span>Storefront Installations</div>
+    <div class="marquee-item"><span class="dot"></span>Service &amp; Repairs</div>
   </div>
 </div>
 
@@ -1775,43 +1788,44 @@
         <div class="service-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
         </div>
-        <h3>Glass Glazing</h3>
-        <p>Expert glazing solutions for both aesthetics and performance. Residential, commercial, and industrial applications tailored to your project.</p>
+        <h3>Curtain Wall &amp; Storefronts</h3>
+        <p>Aluminum curtain wall and storefront systems for commercial and institutional buildings, engineered for strength and longevity and installed by our crews.</p>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M10 4v16"/></svg>
         </div>
-        <h3>Aluminum Fabrication</h3>
-        <p>Custom aluminum structures designed for strength and longevity. Precision fabrication for curtain walls, storefronts, and architectural elements.</p>
+        <h3>Commercial Doors &amp; Entrances</h3>
+        <p>Aluminum entrance systems, glass entrance doors, and high-performance commercial doors engineered for security, energy efficiency, and accessibility.</p>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M10 4v16"/></svg>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 10l5-5M8 15l8-8"/></svg>
         </div>
-        <h3>Doors & Windows</h3>
-        <p>High-performance doors and windows engineered for energy efficiency, security, and accessibility. Solutions for every building type.</p>
+        <h3>Glass Replacement &amp; Interior Glazing</h3>
+        <p>Glass installation, replacement, and repair, including storefront glass, interior and office glass, reception glass, shower glass, and glass railings.</p>
       </div>
       <div class="service-card reveal reveal-delay-3">
         <div class="service-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M3 9h18M3 15h18M12 3v6M8 9v6M16 9v6M12 15v6"/></svg>
         </div>
-        <h3>Automatic Door Operators</h3>
-        <p>Installation and servicing of automatic door systems. Canadian government grants available for accessibility upgrades.</p>
+        <h3>Architectural Cladding</h3>
+        <p>Architectural cladding that finishes and protects building exteriors, coordinated with our glazing and aluminum work for a clean, consistent facade.</p>
       </div>
       <div class="service-card reveal reveal-delay-4">
         <div class="service-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <h3>Custom Solutions</h3>
-        <p>Tailored designs to meet your specific project needs. From concept to completion, we engineer solutions that exceed expectations.</p>
+        <h3>Automatic Door Operators &amp; Accessibility</h3>
+        <p>Supply, installation, and servicing of automatic sliding doors, door operators, and accessible entrances. Our technicians are AAADM certified.</p>
       </div>
       <div class="service-card reveal reveal-delay-5">
         <div class="service-icon">
           <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
         </div>
-        <h3>Service & Repairs</h3>
-        <p>Fast, reliable repairs and maintenance for glass glazing, aluminum doors, windows, and automatic door operators. Keeping your property secure.</p>
+        <h3>Service &amp; Repairs</h3>
+        <p>Fast, reliable repairs and maintenance for glazing, aluminum doors, windows, and automatic door operators. Keeping your property secure.</p>
+        <a href="#contact" class="service-link" data-inquiry="service">Request service or repair <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
@@ -1934,8 +1948,8 @@
       <div class="reveal">
         <div class="section-label">Accessibility Solutions</div>
         <h2 class="section-title reveal reveal-delay-1">Making Spaces More<br><em>Accessible</em> for Everyone</h2>
-        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1rem;">We help businesses and organizations create safer, more accessible spaces with professional accessibility solutions designed to improve convenience, independence, and ease of access.</p>
-        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1.5rem;">Ask us about the Government of Canada's Enabling Accessibility Fund (EAF) and available funding opportunities that may help support your accessibility project.</p>
+        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1rem;">KP provides automatic door operators and accessible entrance solutions. For projects that also require ramps, washroom renovations, or other construction work, we can coordinate with our sister company, Creek Ocean Construction.</p>
+        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1.5rem;">Funding may be available for eligible accessibility projects, depending on current programs and application requirements. Contact us to discuss your project.</p>
         <div class="access-list reveal reveal-delay-3">
           <div class="access-item">
             <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
@@ -1954,8 +1968,8 @@
           <div class="access-item">
             <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg></div>
             <div>
-              <h3>Accessible Ramps & Washrooms</h3>
-              <p>Complete accessibility renovations for ramps, washrooms, and common areas.</p>
+              <h3>Ramps &amp; Washrooms</h3>
+              <p>Ramps, washroom renovations, and other construction work, coordinated with our sister company, Creek Ocean Construction.</p>
             </div>
           </div>
         </div>
@@ -2082,6 +2096,13 @@
         </a>
       </div>
     </div>
+    <div class="partner-card partner-card-text reveal">
+      <div class="partner-content">
+        <div class="section-label">Sister Company</div>
+        <h3>Fabtek</h3>
+        <p>Our sister company, Fabtek, provides aluminum fabrication capabilities that support our glass and aluminum projects. Contact KP for installation and service inquiries, or Fabtek for fabrication and supply inquiries.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2096,7 +2117,7 @@
     <div class="faq-list reveal">
       <details class="faq-item">
         <summary><h3>What services does KP Glass &amp; Aluminum offer?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>We provide commercial glass and glazing, doors and windows, automatic door operators and entrance systems, aluminum fabrication for curtain walls and storefronts, custom solutions, and service and repairs. We also install accessibility solutions such as automatic door operators, barrier-free entrances, and accessible ramps and washrooms.</p></div>
+        <div class="faq-answer"><p>We provide curtain wall and storefronts, commercial doors and entrances, glass replacement and interior glazing, architectural cladding, automatic door operators and accessible entrances, and service and repairs. For ramps, washroom renovations, and other construction work, we coordinate with our sister company, Creek Ocean Construction.</p></div>
       </details>
       <details class="faq-item">
         <summary><h3>Do you provide free estimates?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
@@ -2140,7 +2161,7 @@
       </details>
       <details class="faq-item">
         <summary><h3>Is funding available for accessibility upgrades?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-        <div class="faq-answer"><p>Ask us about the Government of Canada's Enabling Accessibility Fund (EAF) and available funding opportunities that may help support your accessibility project.</p></div>
+        <div class="faq-answer"><p>Funding may be available for eligible accessibility projects, depending on current programs and application requirements. Contact us to discuss your project.</p></div>
       </details>
       <details class="faq-item">
         <summary><h3>What are your business hours?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
@@ -2157,7 +2178,11 @@
       <div>
         <div class="section-label reveal">Get In Touch</div>
         <h2 class="section-title reveal reveal-delay-1">Let's build<br>something <em>together</em></h2>
-        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:2.5rem;">Whether you need a custom storefront, window replacement, or accessibility upgrade, our team is ready to help.</p>
+        <p class="reveal reveal-delay-2" style="color:var(--gray); margin-bottom:1.5rem;">Whether you need a custom storefront, window replacement, or accessibility upgrade, our team is ready to help.</p>
+        <div class="contact-options reveal reveal-delay-2">
+          <a href="#contact-form" class="btn btn-primary" data-inquiry="quote">Request a Project Quote</a>
+          <a href="#contact-form" class="btn btn-outline" data-inquiry="service">Request Service or Repair</a>
+        </div>
         <div class="contact-info">
           <div class="contact-info-item reveal reveal-delay-2">
             <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
@@ -2195,6 +2220,11 @@
           <label for="company-url">Company URL</label>
           <input type="text" id="company-url" name="company-url" tabindex="-1" autocomplete="off">
         </div>
+        <fieldset class="form-choice">
+          <legend>What can we help with?</legend>
+          <label><input type="radio" name="inquiry" value="Project quote" checked> Project quote</label>
+          <label><input type="radio" name="inquiry" value="Service or repair"> Service or repair</label>
+        </fieldset>
         <div class="form-row">
           <div class="form-group">
             <label for="full-name">Full Name</label>
@@ -2214,22 +2244,40 @@
             <label for="service">Service Needed</label>
             <select id="service" name="service">
               <option value="">Select a service</option>
-              <option>Glass Glazing</option>
-              <option>Aluminum Fabrication</option>
-              <option>Doors & Windows</option>
-              <option>Automatic Door Operators</option>
-              <option>Custom Solutions</option>
-              <option>Service / Repair</option>
-              <option>Accessibility Upgrade</option>
+              <option>Curtain Wall &amp; Storefronts</option>
+              <option>Commercial Doors &amp; Entrances</option>
+              <option>Glass Replacement &amp; Interior Glazing</option>
+              <option>Architectural Cladding</option>
+              <option>Automatic Door Operators &amp; Accessibility</option>
+              <option>Service &amp; Repairs</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="location">Project Location</label>
+            <input type="text" id="location" name="location" placeholder="Address or community" autocomplete="street-address">
+          </div>
+          <div class="form-group">
+            <label for="timing">Preferred Timing</label>
+            <select id="timing" name="timing">
+              <option value="">Select timing</option>
+              <option>As soon as possible</option>
+              <option>Within the next month</option>
+              <option>In 1 to 3 months</option>
+              <option>In 3 or more months</option>
+              <option>Flexible / just planning</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label for="details">Project Details</label>
+          <label for="details" id="details-label">Project Details</label>
           <textarea id="details" name="details" placeholder="Tell us about your project..."></textarea>
         </div>
+        <p class="form-note">Have photos or drawings? After you send this form, email them to <a href="mailto:info@kp-glass.ca?subject=Photos%20or%20drawings%20for%20my%20request">info@kp-glass.ca</a> with your name so we can match them to your request.</p>
         <p id="form-error" class="form-error" role="alert" style="display:none;"></p>
-        <button type="submit" class="form-submit">Send Request</button>
+        <button type="submit" class="form-submit">Request a Quote</button>
       </form>
     </div>
   </div>
@@ -2278,11 +2326,12 @@
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="#services">Glass Glazing</a></li>
-          <li><a href="#services">Aluminum Fabrication</a></li>
-          <li><a href="#services">Doors & Windows</a></li>
+          <li><a href="#services">Curtain Wall &amp; Storefronts</a></li>
+          <li><a href="#services">Doors &amp; Entrances</a></li>
+          <li><a href="#services">Glass Replacement</a></li>
+          <li><a href="#services">Architectural Cladding</a></li>
           <li><a href="#services">Automatic Doors</a></li>
-          <li><a href="#services">Custom Solutions</a></li>
+          <li><a href="#services">Service &amp; Repairs</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2647,6 +2696,32 @@ var GALLERIES = {
   });
 })();
 
+// ─── REQUEST OPTIONS (quote vs service) ───
+(function() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var submitBtn = form.querySelector('.form-submit');
+  var detailsLabel = document.getElementById('details-label');
+  var details = document.getElementById('details');
+  function setInquiry(kind) {
+    var service = kind === 'service';
+    form.querySelector('input[name="inquiry"][value="' + (service ? 'Service or repair' : 'Project quote') + '"]').checked = true;
+    submitBtn.textContent = service ? 'Request Service' : 'Request a Quote';
+    detailsLabel.textContent = service ? 'What needs service or repair?' : 'Project Details';
+    details.placeholder = service ? 'Tell us what is happening and where...' : 'Tell us about your project...';
+    if (service && !form.service.value) form.service.value = 'Service & Repairs';
+  }
+  form.querySelectorAll('input[name="inquiry"]').forEach(function(r) {
+    r.addEventListener('change', function() { setInquiry(r.value === 'Service or repair' ? 'service' : 'quote'); });
+  });
+  document.querySelectorAll('[data-inquiry]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      setInquiry(link.getAttribute('data-inquiry'));
+      setTimeout(function() { document.getElementById('full-name').focus({ preventScroll: true }); }, 600);
+    });
+  });
+})();
+
 // ─── CONTACT FORM ───
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -2660,19 +2735,25 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   btn.disabled = true;
   btn.textContent = 'Sending…';
 
+  var inquiry = (form.querySelector('input[name="inquiry"]:checked') || {}).value || 'Project quote';
   var payload = {
     name: form.name.value.trim(),
     email: form.email.value.trim(),
     phone: form.phone.value.trim(),
-    type: form.service.value || 'General inquiry / Get a Quote',
-    description: form.details.value.trim() || 'No additional project details provided.',
+    type: inquiry + (form.service.value ? ' - ' + form.service.value : ''),
+    description: form.details.value.trim() || 'No additional details provided.',
     company: form['company-url'].value,
     source: 'Website contact form',
+    extra: {
+      'Project location': form.location.value.trim() || 'Not provided',
+      'Preferred timing': form.timing.value || 'Not provided',
+    },
   };
 
   (window.KPChat ? window.KPChat.sendLead(payload) : Promise.reject(new Error('Form not ready')))
     .then(function () {
       btn.textContent = 'Request Sent!';
+      btn.dataset.sent = 'true';
       btn.style.background = '#00d4aa';
       btn.style.boxShadow = '0 4px 25px rgba(0,212,170,0.3)';
       form.reset();
@@ -2685,6 +2766,6 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     });
 });
 </script>
-<script defer src="chatbot/chatbot.js?v=5"></script>
+<script defer src="chatbot/chatbot.js?v=6"></script>
 </body>
 </html>

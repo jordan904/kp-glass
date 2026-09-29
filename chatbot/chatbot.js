@@ -28,7 +28,7 @@
     return String(value || "").trim().slice(0, max);
   }
 
-  // lead: { name, email, phone, type, description, transcript, company, source }
+  // lead: { name, email, phone, type, description, transcript, company, source, extra }
   function sendLead(lead) {
     if (lead.company) return Promise.resolve(); // honeypot filled: quietly drop
     var type = clip(lead.type, 100) || "General inquiry";
@@ -47,6 +47,9 @@
       Conversation: clip(lead.transcript, 8000) || "(no chat messages before this form was submitted)",
       botcheck: "",
     };
+    Object.keys(lead.extra || {}).forEach(function (key) {
+      body[key] = clip(lead.extra[key], 300);
+    });
     return fetch(WEB3FORMS_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -229,6 +232,7 @@
       '<select id="kp-lead-type" name="type">' +
       "<option>General inquiry</option>" +
       "<option>Get a quote</option>" +
+      "<option>Service or repair</option>" +
       "<option>Accessibility solutions</option>" +
       "<option>Careers / resume</option>" +
       "<option>Media & partnerships</option>" +
