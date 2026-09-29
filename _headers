@@ -30,3 +30,10 @@
 # Worker source lives in the repo but is not part of the website
 /chatbot-worker/*
   X-Robots-Tag: noindex
+
+# Review sites only: keep the pages.dev addresses out of search results.
+# The real domains are unaffected, so nothing changes at launch.
+https://kp-glass.pages.dev/*
+  X-Robots-Tag: noindex
+https://:hash.kp-glass.pages.dev/*
+  X-Robots-Tag: noindex
