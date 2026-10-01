@@ -782,7 +782,7 @@
     }
     .about-features {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-top: 2rem;
     }
@@ -796,6 +796,7 @@
       color: var(--light-gray);
       font-weight: 500;
     }
+    .about-feature-wide { grid-column: 1 / -1; }
     .about-feature .check {
       width: 20px; height: 20px;
       display: flex; align-items: center; justify-content: center;
@@ -1669,6 +1670,7 @@
       .services-grid { grid-template-columns: 1fr; }
       .services-header { flex-direction: column; align-items: flex-start; }
       .about-grid { grid-template-columns: 1fr; }
+      .about-features { grid-template-columns: 1fr; }
       .about-img-accent { display: none; }
       .about-glass-card { display: none; }
       .accessibility-grid { grid-template-columns: 1fr; }
@@ -1867,9 +1869,9 @@
             <div class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
             Commercial & Residential
           </div>
-          <div class="about-feature">
+          <div class="about-feature about-feature-wide">
             <div class="check"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
-            Accessibility Funding May Be Available
+            Funding may be available for eligible accessibility projects, depending on current programs and application requirements. Contact us to discuss your project.
           </div>
         </div>
       </div>
@@ -1969,8 +1971,8 @@
           <div class="access-item">
             <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg></div>
             <div>
-              <h3>Ramps &amp; Washrooms</h3>
-              <p>Ramps, washroom renovations, and other construction work, coordinated with our sister company, Creek Ocean Construction.</p>
+              <h3>Accessible Ramps &amp; Washrooms</h3>
+              <p>Complete accessibility renovations for ramps, washrooms, and common areas.</p>
             </div>
           </div>
         </div>
@@ -2047,7 +2049,7 @@
     <div class="careers-card reveal">
       <div class="careers-content">
         <div class="section-label">Careers</div>
-        <h2 class="section-title">Build your career with<br><em>KP Glass &amp; Aluminum</em></h2>
+        <h2 class="section-title">Build Your Career With<br><em>KP Glass &amp; Aluminum</em></h2>
         <p>Interested in joining the KP Glass &amp; Aluminum team? While we do not currently have any open positions, we are always interested in connecting with skilled and motivated individuals.</p>
         <p>If you would like to be considered for future opportunities, send us your resume and we will keep it on file.</p>
         <div class="careers-actions">
