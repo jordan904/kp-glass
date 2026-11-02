@@ -1695,7 +1695,7 @@
       .marquee-inner { animation-duration: 15s; }
     }
 </style>
-<link rel="stylesheet" href="chatbot/chatbot.css?v=7">
+<link rel="stylesheet" href="chatbot/chatbot.css?v=8">
 </head>
 <body>
 
@@ -2161,8 +2161,8 @@
       <form class="contact-form reveal reveal-delay-2" id="contact-form">
         <!-- Honeypot -->
         <div class="form-hp" aria-hidden="true">
-          <label for="company-url">Company URL</label>
-          <input type="text" id="company-url" name="company-url" tabindex="-1" autocomplete="off">
+          <label for="check-field">Leave this field empty</label>
+          <input type="text" id="check-field" name="check-field" tabindex="-1" autocomplete="off">
         </div>
         <fieldset class="form-choice">
           <legend>What can we help with?</legend>
@@ -2669,7 +2669,7 @@ var GALLERIES = {
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
   var form = this;
-  if (form.querySelector('#company-url').value) return;
+  if (form.querySelector('#check-field').value) return;
 
   var btn = form.querySelector('.form-submit');
   var errorEl = document.getElementById('form-error');
@@ -2685,7 +2685,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     phone: form.phone.value.trim(),
     type: inquiry + (form.service.value ? ' - ' + form.service.value : ''),
     description: form.details.value.trim() || 'No additional details provided.',
-    company: form['company-url'].value,
+    trap: form['check-field'].value,
     source: 'Website contact form',
     extra: {
       'Project location': form.location.value.trim() || 'Not provided',
@@ -2709,6 +2709,6 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     });
 });
 </script>
-<script defer src="chatbot/chatbot.js?v=7"></script>
+<script defer src="chatbot/chatbot.js?v=8"></script>
 </body>
 </html>
