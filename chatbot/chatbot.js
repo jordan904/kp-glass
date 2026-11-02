@@ -16,13 +16,10 @@
   ];
 
 
-  // Lead emails go straight from the visitor's browser to Web3Forms. Sending
-  // them from the Cloudflare Worker failed: Web3Forms rate-limits Cloudflare's
-  // shared outbound IPs. Web3Forms access keys are public by design (they can
-  // only deliver messages to the inbox they were created for), so they are safe
-  // in page code; restrict them to the site's domains in the Web3Forms dashboard.
-  var WEB3FORMS_URL = "https://api.web3forms.com/submit";
-  var WEB3FORMS_KEY = "c6d8c7b5-01e7-4354-a9b9-d4be6f5d1a42";
+  // Lead emails go straight from the visitor's browser to Formspree (the Worker
+  // never sends email). The form endpoint is public by design: it can only
+  // deliver to the inbox the Formspree form was set up with.
+  var FORMSPREE_URL = "https://formspree.io/f/mwllwppd";
 
   function clip(value, max) {
     return String(value || "").trim().slice(0, max);
@@ -34,10 +31,9 @@
     var type = clip(lead.type, 100) || "General inquiry";
     var name = clip(lead.name, 200);
     var body = {
-      access_key: WEB3FORMS_KEY,
-      subject: "New website lead: " + type + " | " + name,
-      from_name: "KP Assistant",
-      replyto: clip(lead.email, 200),
+      _subject: "New website lead: " + type + " | " + name,
+      _replyto: clip(lead.email, 200),
+      email: clip(lead.email, 200),
       Source: lead.source || "Chat assistant",
       Name: name,
       Email: clip(lead.email, 200),
@@ -45,18 +41,17 @@
       "Inquiry type": type,
       Description: clip(lead.description, 2000) || "No additional details provided.",
       Conversation: clip(lead.transcript, 8000) || "(no chat messages before this form was submitted)",
-      botcheck: "",
     };
     Object.keys(lead.extra || {}).forEach(function (key) {
       body[key] = clip(lead.extra[key], 300);
     });
-    return fetch(WEB3FORMS_URL, {
+    return fetch(FORMSPREE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(body),
     }).then(function (res) {
       return res.json().catch(function () { return null; }).then(function (data) {
-        if (!res.ok || !data || !data.success) throw new Error((data && data.message) || "Send failed");
+        if (!res.ok || !data || !data.ok) throw new Error((data && data.error) || "Send failed");
       });
     });
   }

@@ -8,7 +8,7 @@ review. Lead emails are sent from the browser, not from this Worker (see Setup
 step 2).
 
 KP routes every inquiry type (general, quotes, accessibility, careers) to the
-same inbox, so the site needs only **one** Web3Forms access key. Creek uses two.
+same inbox, so the site uses one Formspree form.
 
 ## Setup
 
@@ -16,13 +16,11 @@ same inbox, so the site needs only **one** Web3Forms access key. Creek uses two.
 Nothing to configure. The `[ai]` binding in `wrangler.toml` gives the Worker
 access to Cloudflare's hosted models on the same account used to deploy it.
 
-### 2. Lead emails (Web3Forms, sent from the browser)
+### 2. Lead emails (Formspree, sent from the browser)
 This Worker does not send email. The in-chat contact form and the page contact
-form send straight from the visitor's browser to Web3Forms (see `sendLead` in
-`../chatbot/chatbot.js`). Sending from the Worker failed because Web3Forms
-rate-limits Cloudflare's shared outbound IPs ("Rate limit exceeded. IP
-temporarily blocked"). Web3Forms access keys are public by design and live in
-`chatbot.js`; restrict them to the site's domains in the Web3Forms dashboard.
+form send straight from the visitor's browser to Formspree (see `sendLead` in
+`../chatbot/chatbot.js`). The form endpoint is public by design. Change which
+inbox receives leads in the Formspree dashboard.
 
 ### 3. Deploy
 ```bash
